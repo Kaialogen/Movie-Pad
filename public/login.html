@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="u-responsive-xl" lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moviepad</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link href="/styles/login.css" rel="stylesheet" />
+    <link href="/styles/main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <!-- navbar div start -->
+    <div class="topnav">
+      <nav> 
+        <!-- <div class="homebtn">
+            <button class="homebtn-btn" onclick="location.href='/shop.html';">
+              Moviepad
+            </button>
+            <div class="dropdown-content">
+              <a href="#">Adventure</a>
+              <a href="#">Animation</a>
+              <a href="#">Science Fiction</a>
+              <a href="#">Comedy</a>
+              <a href="#">Drama</a>
+              <a href="#">Horror</a>
+              <a href="#">Action</a>
+            </div>
+          </div> -->
+            <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
+            <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
+            <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
+            <div class="homebtn">
+              <button class="homebtn-btn" onclick="location.href='/shop.html';"><img src="images/FullName.png" class="logo" width="180" height="44"></button>
+            </div>
+
+            <form class="search-bar" method="post" onsubmit="submitted()" role="search">
+              <i class="fa fa-fw fa-search search-icon"></i>
+              <input class="search-text text-white" type="text" id="query" placeholder="Search">
+            </form>
+      </nav>
+    </div>
+    <!-- navbar div end -->
+    <div class="login">
+      <article>
+        <h1 style="text-align: center; color: white;">Welcome to Moviepad!</h1>
+        <div style="background-color: lightgrey; width: 40%; margin: auto; padding: 1em; border-radius: 25px;">
+          <form name="signIn" method="post" action="/shop.html" onsubmit="return validateEmail()" required>
+            <label>Please Enter your Details:</label><br />
+            <input type="text" name="email" placeholder="Email Address" required/>
+            <br />
+            <input type="password" name="password" placeholder="Password" required/>
+            <br />
+            <div style="width: 100%; text-align: center">
+              <button type="submit" name="action" value="login" >Log In</button>
+              <br />
+              <br />
+              <a href="/signup.html">Don't have an account?</a>
+            </div>
+          </form>
+        </div>
+      </article>
+    </div>
+  </body>
+  <script src="./js/login.js"></script>
+  <script src="./js/search.js"></script>
+
+</html>
+

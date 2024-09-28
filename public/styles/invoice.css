@@ -1,0 +1,47 @@
+.invoice{
+    position: absolute;
+    width: 1300px;
+    padding: 50px;
+  }
+
+#payment-details{
+    color: black;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+.invoice-title {
+  text-align: center; 
+  color: #0f79af;
+}
+
+.payment-detail {
+  color: black;
+}
+
+.info {
+  color: black;
+}
+
+.details {
+  color: black;
+}
+
+.payment-info {
+  color: black;
+}
+
+.payment-details {
+  color: black;
+}
+
+.invoice-table {
+  width: 100%; 
+  margin: auto; 
+  padding: 2em
+}
