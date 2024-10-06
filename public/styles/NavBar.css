@@ -1,0 +1,162 @@
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #1b2530;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #a9a9a941;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav .active {
+    background-color: #0f79af;
+    color: white;
+  }
+
+  .active {
+    background-color: #0f79af;
+    color: white;
+  }
+  
+  /* Create a right-aligned (basket) link inside the navigation bar */
+  .topnav a.basket {
+    float: right;
+    background-color: #0f79af;
+    color: white;
+    padding: 14px 16px;
+    font-size: 32px;
+    border: none;
+    outline: none;
+  }
+  
+  .topnav a.user {
+    float: right;
+    color: white;
+    font-size: 32px;
+    border: none;
+    outline: none;
+  }
+  
+  .topnav a.help {
+    float: right;
+    /* background-color: #0f79af; */
+    color: white;
+    padding: 14px 16px;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    position: relative;
+  }
+  
+  .logo{
+    display: inline-block;
+    margin: auto;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+  }
+  
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+    .topnav input[type=text] {
+      border: 1px solid #ccc;
+    }
+  }
+  
+  /* Style the search box inside the navigation bar */
+  .topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+    color: white;
+  }
+  
+  
+  /* this code is the same as .dropdown's css directly below the .homebtn code*/
+  .homebtn {
+    float: left;
+    overflow: hidden;
+    position: relative;
+    left: 10px;
+    top: 12px;
+  }
+  
+  .homebtn .homebtn-btn{
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    /* padding: 23px 16px; */
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+    cursor: pointer;
+  }
+  
+  /*search bar text */
+  .search-text {
+    flex: 1;
+    position: relative;
+    border: 0;
+    margin: 5px;
+    min-width: 0;
+    outline: 0;
+    background: transparent;
+  }
+
+/* Search bar whole - new name (originally border-white) changed to search-bar */
+.search-bar {
+    display: flex;
+    position: relative;
+    top: 10px;
+    left: 20px;
+    border-width: 2px;
+    border-color: #00a8e1;
+    border-radius: 10px !important;
+    flex-direction: row;
+    border-style: solid;
+    flex-wrap: nowrap;
+    width: 300px;
+    height: 45px;
+  }
+  
+  /* Search bar icon - was originally search-button */
+  .search-icon {
+    color: #ffffff !important;
+    padding: 12px;
+    box-sizing: content-box;
+    height: 20%;
+  }
+  
+  .temp-help{
+    float: right;
+    position: relative;
+  }
+  
+  .text-white {
+    color: #ffffff;
+  }

@@ -5,6 +5,19 @@
 
 }
 
+.signup-main h1 {
+    text-align: center; 
+    color: white;
+}
+
+.signup-main div {
+    background-color: lightgrey; 
+    width: 40%; 
+    margin: auto; 
+    padding: 1em; 
+    border-radius: 25px;
+}
+
 input[type=text] {
     width: 50%; 
     padding: 12px 12px; 
@@ -13,7 +26,7 @@ input[type=text] {
     border-color: grey;
 }
 
-input[type=text] {
+input[type=password] {
     width: 50%; 
     padding: 12px 12px; 
     margin: 8px; 

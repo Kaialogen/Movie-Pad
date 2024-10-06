@@ -2,7 +2,19 @@
     position: absolute;
     width: 100%;
     padding: 50px;
+}
 
+.login h1 {
+    text-align: center; 
+    color: white;
+}
+
+.login div {
+    background-color: lightgrey; 
+    width: 40%; 
+    margin: auto; 
+    padding: 1em; 
+    border-radius: 25px;
 }
 
 input[type=text] {

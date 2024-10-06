@@ -46,3 +46,8 @@ a:visited {
     background-color: transparent;
     text-decoration: none;
 }
+
+.main h1 {
+  text-align: center;
+  color: white;
+}

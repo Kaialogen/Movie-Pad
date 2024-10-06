@@ -1,73 +1,71 @@
 <!DOCTYPE html>
+
 <html class="u-responsive-xl" lang="en-GB">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moviepad</title>
     <link rel="icon" type="image/x-icon" href="/images/logo.png">
-    <link href="/styles/help.css" rel="stylesheet" />
-    <link href="/styles/main.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/styles/help.css" rel="stylesheet">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link href="/styles/NavBar.css" rel="stylesheet">
   </head>
 
   <body>
+  
     <!-- navbar div start -->
     <div class="topnav">
-      <nav>
-            <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
-            <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
-            <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
-            <div class="homebtn">
-              <button class="homebtn-btn" onclick="location.href='/index.html';"><img src="images/FullName.png" class="logo" width="180" height="44"></button>
-            </div>
-
-            <form class="search-bar" method="post" onsubmit="submitted()" role="search">
-              <i class="fa fa-fw fa-search search-icon"></i>
-              <input class="search-text text-white" type="text" id="query" placeholder="Search">
+      <script src="./js/search.js"></script>
+        <nav>
+          <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
+          <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
+          <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
+          <div class="homebtn">
+            <button class="homebtn-btn" onclick="location.href='/index.html';"><img src="images/FullName.png" class="logo" width="180" height="44" alt="Home Button"></button>
+          </div>
+          <form class="search-bar" method="post" onsubmit="submitted()" role="search">
+            <i class="fa fa-fw fa-search search-icon"></i>
+            <input class="search-text text-white" type="text" id="query" placeholder="Search">
             </form>
-      </nav>
-    </div>
-    <!-- navbar div end -->
+        </nav>
+      </div>
 
-    <div id="main">
-        <article>
-            <br>
-            <br>
-            <br>
-            <h1 style="text-align: center; color: white;">FAQ</h1>
-            <br>
-            <details>
-                <summary><strong>How do I create an account?</strong></summary>
-                <div class="text"><em>An account can be opened through the login portal, by selecting don't have an account. </em></div>
-            </details>
-            <details>
-                <summary><strong>Can an account be used by more than one person?</strong></summary>
-                <div class="text"><em> No, only one person should have access to an account. </em></div>
-            </details>
-            <details>
-                <summary><strong>Can I watch a movie more than one time?</strong></summary>
-                <div class="text"><em>Yes, you can watch a movie as many times as you want during your rental period.</em></div>
-            </details>
-            <details>
-                <summary><strong>Am I allowed to use multiple devices?</strong></summary>
-                <div class="text"><em>Yes, you can log on and watch on multiple devices but not at the same time.</em></div>
-            </details>
-            <details>
-                <summary><strong>Will more movies be added?</strong></summary>
-                <div class="text"><em>Yes we intend to add more movies in the future, although there is not a fixed date for this.</em></div>
-            </details>
-
-            <img src="/images/HelpPage.png" class="center">
-        </article>
+    <div id="main" class="main">
+      <article>
+        <br>
+        <br>
+        <br>
+        <h1>FAQ</h1>
+          <br>
+          <details>
+            <summary><strong>How do I create an account?</strong></summary>
+            <div class="text"><em>An account can be opened through the login portal, by selecting don't have an account. </em></div>
+          </details>
+          <details>
+            <summary><strong>Can an account be used by more than one person?</strong></summary>
+            <div class="text"><em> No, only one person should have access to an account. </em></div>
+          </details>
+          <details>
+            <summary><strong>Can I watch a movie more than one time?</strong></summary>
+            <div class="text"><em>Yes, you can watch a movie as many times as you want during your rental period.</em></div>
+          </details>
+          <details>
+            <summary><strong>Am I allowed to use multiple devices?</strong></summary>
+            <div class="text"><em>Yes, you can log on and watch on multiple devices but not at the same time.</em></div>
+          </details>
+          <details>
+            <summary><strong>Will more movies be added?</strong></summary>
+            <div class="text"><em>Yes we intend to add more movies in the future, although there is not a fixed date for this.</em></div>
+          </details>
+      </article>
     </div>
   </body>
 
 <script src="./js/help.js"></script>
-<script src="./js/search.js"></script>
-
 
 </html>
