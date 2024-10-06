@@ -1,6 +1,6 @@
 function submitted() {
   const input = document.getElementById("query").value.toLowerCase();
-  const baseURL = document.URL.split("http://localhost:8080")[0];
+  const baseURL = document.URL.split("http://localhost:3000")[0];
 
   // Use an object to map movie keywords to their IDs
   const movieMap = {
