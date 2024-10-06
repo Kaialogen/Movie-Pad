@@ -4,15 +4,11 @@ function addToBasket(movieId) {
     if (!movie) return;
 
     // Get the basket from local storage, or initialize an empty array if it doesn't exist
-    const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
     const save = JSON.parse(localStorage.getItem("save") ?? "[]");
+    const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
 
     // Check if the movie is already in the "save" list
-    let exists = save.indexOf(movie.name) !== -1;
-
-    if (!exists) {
-        save.push(movie.name);
-    }
+    const exists = basket.some((item) => item.id === movie.id);
 
     // Retrieve the number of days the user wants to rent the movie
     let daysRent = parseInt(document.getElementById("days-to-rent-" + movieId).value);
@@ -43,10 +39,14 @@ function addToBasket(movieId) {
     updateBasket(movie, basket, exists);
 }
 
+
+// Helper function to update or add a movie to the basket
 function updateBasket(movie, basket, exists) {
-    // Helper function to update or add a movie to the basket
+    
     if (exists) {
-        let movieIndex = basket.findIndex((item) => item.name === movie.name);
+        let movieIndex = basket.findIndex((item) => item.id === movie.id);
+
+        // Update rentDays for the movie in the basket
         basket[movieIndex].rentDays += movie.rentDays;
 
         if (basket[movieIndex].rentDays < 1) {

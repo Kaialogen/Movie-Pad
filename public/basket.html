@@ -1,49 +1,47 @@
 <!DOCTYPE html>
+
 <html class="u-responsive-xl" lang="en-GB">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moviepad</title>
     <link rel="icon" type="image/x-icon" href="/images/logo.png">
-    <link href="/styles/basket.css" rel="stylesheet" />
-    <link href="/styles/main.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/styles/basket.css" rel="stylesheet">
+    <link href="/styles/main.css" rel="stylesheet">
   </head>
 
   <body>
+
     <!-- navbar div start -->
     <div class="topnav">
-      <nav>
-            <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
-            <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
-            <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
-            <div class="homebtn">
-              <button class="homebtn-btn" onclick="location.href='/index.html';"><img src="images/FullName.png" class="logo" width="180" height="44"></button>
-            </div>
-
-            <form class="search-bar" method="post" onsubmit="submitted()" role="search">
-              <i class="fa fa-fw fa-search search-icon"></i>
-              <input class="search-text text-white" type="text"  id="query" placeholder="Search">
+      <script src="./js/search.js"></script>
+        <nav>
+          <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
+          <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
+          <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
+          <div class="homebtn">
+            <button class="homebtn-btn" onclick="location.href='/index.html';"><img src="images/FullName.png" class="logo" width="180" height="44" alt="Home Button"></button>
+          </div>
+          <form class="search-bar" method="post" onsubmit="submitted()" role="search">
+            <i class="fa fa-fw fa-search search-icon"></i>
+            <input class="search-text text-white" type="text" id="query" placeholder="Search">
             </form>
-      </nav>
-    </div>
-    <!-- navbar div end -->
+        </nav>
+      </div>
 
     <div class="invoice">
       <article>
         <br>
         <br>
         <br>
-        <h1 style="text-align: center; color: white;">Basket</h1>
-        <div style="background-color: lightgrey; width: 70%; margin: auto; padding: 2em; border-radius: 25px">
-          <table style="width: 100%">
+        <h1>Basket</h1>
+        <div class="container">
+          <table>
             <thead>
               <tr>
                 <th class="th1">Movie</th>
@@ -55,14 +53,13 @@
             </tbody>
           </table>
           <hr />
-          <div style="text-align: right">
+          <div class="right-align-text">
             <strong>Total Price:</strong> £<span id="total-price">0.00</span>
           </div>
           <hr />
           <!-- Changed order and added breaks-->
           <button class="btn pay" onclick="CheckBasket()">Proceed to Checkout</button>
           <button class="btn clear" onclick="ClearBasket()">Clear Basket</button>
-
         </div>
       </article>
     </div>
@@ -70,6 +67,5 @@
 
   <script src="./js/movies.js"></script>
   <script src="./js/basket.js"></script>
-  <script src="./js/search.js"></script>
 
 </html>

@@ -69,3 +69,6 @@ For 100%
  - [x] Missing input boxes such as name on card, email.
  - [x] Input boxes are not in logical order.
  - [x] Cancel button goes back to shop.html, it should go back to basket.html
+
+
+# Bugs
