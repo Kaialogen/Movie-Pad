@@ -29,7 +29,6 @@ https://www.quackit.com/html/html_editors/scratchpad/?example=/css/flexbox/tutor
 */
 * {
   box-sizing: border-box;
-  /*font-family: "Roboto", sans-serif; */
   font-family: Arial, Helvetica, sans-serif;
 
 }
@@ -188,37 +187,6 @@ aside {
   cursor: pointer;
 }
 
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: fixed;
-  background-color: #0f171e;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  color: white;
-  cursor: pointer;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #a9a9a941;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 /*search bar text */
 .search-text {
   flex: 1;
@@ -277,36 +245,3 @@ footer {
   color: white;
   text-align: center;
   }
-
-  /* SEARCH BUTTON NOW NO LONGER USED 
-  
-  .search-button {
-  cursor: pointer;
-  position: relative;
-  flex: 0;
-  background: none;
-  border: 0;
-  padding: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-/* Dropdown button */
-.dropdown .dropbtn {
-  font-size: 32px;
-  border: none;
-  outline: none;
-  background-color: #0f79af;
-  color: white;
-  padding: 14px 16px;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
-  cursor: pointer;
-}

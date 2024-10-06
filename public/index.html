@@ -2,17 +2,13 @@
 <html class="u-responsive-xl" lang="en-GB">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-
     <title>Moviepad</title>
     <link rel="icon" type="image/x-icon" href="/images/logo.png">
-    <link href="/styles/shop.css" rel="stylesheet" />
-    <link href="/styles/main.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
@@ -20,34 +16,16 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/styles/shop.css" rel="stylesheet">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link href="/styles/FilterButton.css" rel="stylesheet">
   </head>
 
 
   <body>
     <!-- navbar div start -->
     <div class="topnav">
-      <nav> 
-        <div class="dropdown">
-            <button class="dropbtn">
-              <div class="hamburger">
-                <i class="fa fa-bars"></i>
-              </div>
-            </button>
-            <div class="dropdown-content">
-              <a onclick="adventure()">Adventure</a>
-              <a onclick="animation()">Animation</a>
-              <a onclick="scienceFiction()">Science Fiction</a>
-              <a onclick="comedy()">Comedy</a>
-              <a onclick="drama()">Drama</a>
-              <a onclick="horror()">Horror</a>
-              <a onclick="action()">Action</a>
-              <a onclick="fantasy()">Fantasy</a>
-              <a onclick="crime()">Crime</a>
-              <a onclick="thriller()">Thriller</a>
-              <a onclick="romance()">Romance</a>
-              <a onclick="western()">Western</a>
-            </div>
-          </div>
+      <nav>
             <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
             <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
             <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
@@ -160,6 +138,28 @@
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div> 
+
+    
+    <!-- Filter Button-->
+    <script src="./js/Filter.js"></script>
+    <div class="dropdown">
+      <button class="dropbtn">Filter</button>
+      <div class="dropdown-content">
+        <button onclick="adventure()">Adventure</button>
+        <button onclick="animation()">Animation</button>
+        <button onclick="scienceFiction()">Science Fiction</button>
+        <button onclick="comedy()">Comedy</button>
+        <button onclick="drama()">Drama</button>
+        <button onclick="horror()">Horror</button>
+        <button onclick="action()">Action</button>
+        <button onclick="fantasy()">Fantasy</button>
+        <button onclick="crime()">Crime</button>
+        <button onclick="thriller()">Thriller</button>
+        <button onclick="romance()">Romance</button>
+        <button onclick="western()">Western</button>
+      </div>
+    </div>
+
 
 <div class="grid-container" id="grid">
     <div id="shang-chi" class="container">
@@ -331,5 +331,3 @@
 
 
 </html>
-
-<script src="./js/Filter.js"></script>
