@@ -8,18 +8,18 @@ function storeData() {
     // Add the value of each form input to the form data object
       formData[inputId] = document.getElementById(inputId).value;
     })
-    // Store the form data in local storage
-    localStorage.setItem("paymentDetails", JSON.stringify(formData));
+    // Store the form data in session storage
+    sessionStorage.setItem("paymentDetails", JSON.stringify(formData));
     // Return true to indicate that the data was successfully stored
     return true;
 }
 
 // Retrieve the HTML element for the shopping basket
 const basketContainer = document.getElementById("basket");
-// Retrieve the shopping basket from local storage
-const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+// Retrieve the shopping basket from session storage
+const basket = JSON.parse(sessionStorage.getItem("basket") ?? "[]");
 
-// Initialize the total price and item price to 0
+// Initialise the total price and item price to 0
 let totalPrice = 0.0;
 let itemPrice = 0.0;
 

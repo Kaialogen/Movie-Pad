@@ -1,9 +1,9 @@
 // Retrieve the payment details from local storage
-const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails"));
+const paymentDetails = JSON.parse(sessionStorage.getItem("paymentDetails"));
 // Retrieve the HTML element for the shopping basket
 const basketContainer = document.getElementById("basket");
 // Retrieve the shopping basket from local storage
-const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+const basket = JSON.parse(sessionStorage.getItem("basket") ?? "[]");
 
 // Initialize the total price and item price to 0
 let totalPrice = 0.0;
@@ -66,4 +66,4 @@ document.getElementById("payment-order-ref-3").textContent = paymentOrderRef3;
 document.getElementById("payment-order-ref-4").textContent = paymentOrderRef4;
 
 // Clear the local storage
-localStorage.clear();
+sessionStorage.clear();

@@ -1,6 +1,6 @@
 function ClearBasket() {
   //Function to clear basket array and refresh page
-  localStorage.setItem('basket', '[]');
+  sessionStorage.setItem('basket', '[]');
   window.location.reload();
 }
 
@@ -18,8 +18,8 @@ function RemoveMovie(movieinput, basket, save) {
   const moviename = movieinput.split(".")[0];
   basket.splice(save.indexOf(moviename), 1);
   save.splice(save.indexOf(moviename), 1);
-  localStorage.setItem("basket", JSON.stringify(basket));
-  localStorage.setItem("save", JSON.stringify(save));
+  sessionStorage.setItem("basket", JSON.stringify(basket));
+  sessionStorage.setItem("save", JSON.stringify(save));
   window.location.reload();
 }
   
@@ -27,7 +27,7 @@ function AddDays(movieinput, basket, save) {
   const moviename = movieinput.split(".")[0];
   if (basket[save.indexOf(moviename)].rentDays < 30) {
     basket[save.indexOf(moviename)].rentDays += 1;
-    localStorage.setItem("basket", JSON.stringify(basket));
+    sessionStorage.setItem("basket", JSON.stringify(basket));
     window.location.reload();
   }
   else {
@@ -39,21 +39,21 @@ function SubDays(movieinput){
   const moviename = movieinput.split(".")[0];
   if (basket[save.indexOf(moviename)].rentDays > 1){
     basket[save.indexOf(moviename)].rentDays -= 1;
-    localStorage.setItem("basket", JSON.stringify(basket));
+    sessionStorage.setItem("basket", JSON.stringify(basket));
     window.location.reload();
   }
   else {
     basket.splice(save.indexOf(moviename), 1);
     save.splice(save.indexOf(moviename), 1);
-    localStorage.setItem("basket", JSON.stringify(basket));
-    localStorage.setItem("save", JSON.stringify(save));
+    sessionStorage.setItem("basket", JSON.stringify(basket));
+    sessionStorage.setItem("save", JSON.stringify(save));
     window.location.reload();
   }
 }
 
 const basketContainer = document.getElementById("basket");
-const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
-const save = JSON.parse(localStorage.getItem("save") ?? "[]");
+const basket = JSON.parse(sessionStorage.getItem("basket") ?? "[]");
+const save = JSON.parse(sessionStorage.getItem("save") ?? "[]");
 
 
 let totalPrice = 0.00;
