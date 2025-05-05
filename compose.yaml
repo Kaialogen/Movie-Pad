@@ -3,7 +3,7 @@ services:
     build:
       context: .
     volumes:
-      - .:/var/www/html
+      - .:/usr/src/app
     environment:
       NODE_ENV: production
     ports:

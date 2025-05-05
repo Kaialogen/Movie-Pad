@@ -63,7 +63,6 @@ basket.forEach((basketItem) => {
   itemPrice = basketItem.price * basketItem.rentDays;
   itemPrice = itemPrice.toFixed(2);
   save.push(basketItem.name);
-  index = save.indexOf(basketItem.name);
   basketContainer.insertAdjacentHTML(
     "beforeend",
       `

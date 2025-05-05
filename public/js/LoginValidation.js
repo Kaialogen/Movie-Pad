@@ -3,7 +3,7 @@ function validateEmail() { //Validate email address
       return true;
     } 
     else {
-      alert("Please enter a valid email address")
+      alert("Please enter a valid email address");
       return false;
-    }
+    };
   }

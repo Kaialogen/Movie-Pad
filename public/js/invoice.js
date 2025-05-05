@@ -5,7 +5,7 @@ const basketContainer = document.getElementById("basket");
 // Retrieve the shopping basket from local storage
 const basket = JSON.parse(sessionStorage.getItem("basket") ?? "[]");
 
-// Initialize the total price and item price to 0
+// Initialise the total price and item price to 0
 let totalPrice = 0.0;
 let itemPrice = 0.0;
 

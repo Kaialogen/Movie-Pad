@@ -6,8 +6,9 @@ showSlidesAutomatic(slideIndex);
 
 
 //Function for manual slideshow index change
-function plusSlides(n) {
-    showSlidesManual(slideIndex += n);
+function plusSlides(value) {
+    slideIndex += value;
+    showSlidesManual(slideIndex);
 }
 
 //Function for automatic slideshow index change
@@ -17,8 +18,8 @@ function showSlidesManual(n) {
         slideIndex = slides.length;
     }
 
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+    for (const element of slides) {
+        element.style.display = "none";
     }
 
     if (n > slides.length) {
@@ -27,7 +28,7 @@ function showSlidesManual(n) {
     slides[slideIndex-1].style.display = "block";
 }
 
-function showSlidesAutomatic() {
+function showSlidesAutomatic(slideIndex) {
     let slides = document.getElementsByClassName("mySlides");
     for (let j = 0; j < slides.length; j++) {
         slides[j].style.display = "none";
