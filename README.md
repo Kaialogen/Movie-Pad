@@ -10,7 +10,7 @@ This project has been modified outside of the module to be dockerised.
 It is currently being refactored to use a more modern stack. This stack with be a MERN stack with a React frontend and Node.js backend.
 The current stack is a simple HTML/CSS/JS frontend with a Node.js backend.
 
-[![MoviePad](./Images/MoviePad.png)
+![MoviePad](./Images/IndexPage.png)
 
 ## Getting Started
 - To deploy the docker container: `docker compose up --build` or to just deploy node `node server.js`
