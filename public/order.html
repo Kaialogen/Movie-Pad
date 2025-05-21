@@ -1,134 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="u-responsive-xl" lang="en-GB">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Moviepad</title>
-    <link rel="icon" type="image/x-icon" href="/images/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="/styles/order.css" rel="stylesheet">
-    <link href="/styles/main.css" rel="stylesheet">
-    <link href="/styles/NavBar.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="/styles/order.css" rel="stylesheet" />
+    <link href="/styles/main.css" rel="stylesheet" />
+    <link href="/styles/NavBar.css" rel="stylesheet" />
   </head>
 
   <body>
     <!-- navbar div start -->
     <div class="topnav">
       <script src="./js/search.js"></script>
-        <nav>
-          <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
-          <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
-          <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
-          <div class="homebtn">
-            <button class="homebtn-btn" onclick="location.href='/index.html';"><img src="images/FullName.png" class="logo" width="180" height="44" alt="Home Button"></button>
-          </div>
-          <form class="search-bar" method="post" onsubmit="submitted()" role="search">
-            <i class="fa fa-fw fa-search search-icon"></i>
-            <input class="search-text text-white" type="text" id="query" placeholder="Search">
-            </form>
-        </nav>
-      </div>
-
-
-  <div class="order-main">
-    <h1 style="text-align: center; color: white;">Checkout</h1>
-    <div class="row">
-      <div class="col-75">
-        <div class="container">
-          <form action="/invoice.html" method="post" id="form" onsubmit="return storeData();" redirect="true" source="custom">
-            <div class="row">
-              <div class="col-50">
-                <h3>Billing Address</h3>
-                <label for="fname"><i class="fa fa-user"></i> First Name</label>
-                <input type="text" id="fname" name="fname" placeholder="John" required="">
-                <label for="lname"><i class="fa fa-user"></i> Last Name</label>
-                <input type="text" id="lname" name="lname" placeholder="Doe" required="">
-                <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input type="text" id="email" name="email" placeholder="john@example.com" required="">
-                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                <input type="text" id="adr" name="adr" placeholder="542 W. 15th Street" required="">
-                <label for="city"><i class="fa fa-institution"></i> City</label>
-                <input type="text" id="city" name="city" placeholder="Coventry" required="">
-    
-                <div class="row">
-                  <div class="col-50">
-                    <label for="county">County</label>
-                    <input type="text" id="county" name="county" placeholder="Coventry" required="">
-                  </div>
-                  <div class="col-50">
-                    <label for="postcode">Postcode</label>
-                    <input type="text" id="postcode" name="postcode" placeholder="CV" required="">
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-50">
-                <h3>Card Info</h3>
-                <label for="fname">Accepted Cards</label>
-                <div class="icon-container">
-                  <i class="fa fa-cc-visa" style="color:navy;"></i>
-                  <i class="fa fa-cc-amex" style="color:blue;"></i>
-                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                  <i class="fa fa-cc-discover" style="color:orange;"></i>
-                </div>
-                <label for="cname">Name on Card</label>
-                <input type="text" id="cname" name="cname" placeholder="John More Doe" required="">
-                <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="ccnum" placeholder="1111-2222-3333-4444" required="">
-                <label for="expmonth">Exp Month</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="September" required="">
-                <div class="row">
-                  <div class="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input type="text" id="expyear" name="expyear" placeholder="2018" required="">
-                  </div>
-                  <div class="col-50">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352" required="">
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <label>
-              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-            </label>
-            <input type="submit" value="Pay Now" class="btn">
-          </form>
+      <nav>
+        <a href="/basket.html" class="basket"><i class="fa fa-fw fa-shopping-basket"></i></a>
+        <a href="/login.html" class="user"><i class="fa fa-fw fa-user"></i></a>
+        <a href="/help.html" class="help"><i class="fa fa-fw fa-question"></i></a>
+        <div class="homebtn">
+          <button class="homebtn-btn" onclick="location.href='/index.html';">
+            <img src="images/FullName.png" class="logo" width="180" height="44" alt="Home Button" />
+          </button>
         </div>
-      </div>
-
-
-      <div class="col-25">
-        <div class="container">
-          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b></b></span></h4>
-          <table style="width: 90%">
-          <thead>
-            <tr style="text-align: left">
-              <th>Movie</th>
-              <th>Days</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody style="text-align: left" id="basket">
-        </tbody>
-        </table>
-        <hr>
-          <strong>Total Price:</strong> £<span id="total-price">00.00</span>
-        </div>
-      </div>
-
-
-
+        <form class="search-bar" method="post" onsubmit="submitted()" role="search">
+          <i class="fa fa-fw fa-search search-icon"></i>
+          <input class="search-text text-white" type="text" id="query" placeholder="Search" />
+        </form>
+      </nav>
     </div>
-  </div>  
 
-  <script src="./js/order.js"></script>
+    <div class="order-main">
+      <h1 style="text-align: center; color: white">Checkout</h1>
+      <div class="row">
+        <div class="col-75">
+          <div class="container">
+            <form
+              action="/invoice.html"
+              method="post"
+              id="form"
+              onsubmit="return storeData();"
+              redirect="true"
+              source="custom"
+            >
+              <div class="row">
+                <div class="col-50">
+                  <h3>Billing Address</h3>
+                  <label for="fname"><i class="fa fa-user"></i> First Name</label>
+                  <input type="text" id="fname" name="fname" placeholder="John" required="" />
+                  <label for="lname"><i class="fa fa-user"></i> Last Name</label>
+                  <input type="text" id="lname" name="lname" placeholder="Doe" required="" />
+                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                  <input type="text" id="email" name="email" placeholder="john@example.com" required="" />
+                  <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" id="adr" name="adr" placeholder="542 W. 15th Street" required="" />
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" id="city" name="city" placeholder="Coventry" required="" />
 
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="county">County</label>
+                      <input type="text" id="county" name="county" placeholder="Coventry" required="" />
+                    </div>
+                    <div class="col-50">
+                      <label for="postcode">Postcode</label>
+                      <input type="text" id="postcode" name="postcode" placeholder="CV" required="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-50">
+                  <h3>Card Info</h3>
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color: navy"></i>
+                    <i class="fa fa-cc-amex" style="color: blue"></i>
+                    <i class="fa fa-cc-mastercard" style="color: red"></i>
+                    <i class="fa fa-cc-discover" style="color: orange"></i>
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cname" placeholder="John More Doe" required="" />
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="ccnum" placeholder="1111-2222-3333-4444" required="" />
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" placeholder="September" required="" />
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" placeholder="2018" required="" />
+                    </div>
+                    <div class="col-50">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" placeholder="352" required="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <label>
+                <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
+              </label>
+              <input type="submit" value="Pay Now" class="btn" />
+            </form>
+          </div>
+        </div>
+
+        <div class="col-25">
+          <div class="container">
+            <h4>
+              Cart <span class="price" style="color: black"><i class="fa fa-shopping-cart"></i> <b></b></span>
+            </h4>
+            <table style="width: 90%">
+              <thead>
+                <tr style="text-align: left">
+                  <th>Movie</th>
+                  <th>Days</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody style="text-align: left" id="basket"></tbody>
+            </table>
+            <hr />
+            <strong>Total Price:</strong> £<span id="total-price">00.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/order.js"></script>
   </body>
-
 </html>

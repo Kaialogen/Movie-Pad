@@ -4,9 +4,10 @@
 }
 
 .invoice .container {
-  background-color: lightgrey; 
-  width: 70%; margin: 
-  auto; padding: 2em; 
+  background-color: lightgrey;
+  width: 70%;
+  margin: auto;
+  padding: 2em;
   border-radius: 25px;
 }
 
@@ -20,7 +21,7 @@
 
 .th1 {
   text-align: left;
-  color:black;
+  color: black;
 }
 
 .th2 {
@@ -52,7 +53,7 @@ tbody {
   border-color: #f44336;
   color: red;
 }
-  
+
 .clear:hover {
   background-color: #f44336;
   color: white;
@@ -60,12 +61,12 @@ tbody {
 
 /* Pay */
 .pay {
-  border-color: #04AA6D;
+  border-color: #04aa6d;
   color: green;
 }
-  
+
 .pay:hover {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
 }
 

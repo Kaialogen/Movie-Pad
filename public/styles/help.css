@@ -1,50 +1,50 @@
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-  }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
 
 .text-title {
-    color: white;
-    font-size: 50px;
-    padding: 16px 32px;
-    font-weight: bold;
-    text-align: center;
-  }
+  color: white;
+  font-size: 50px;
+  padding: 16px 32px;
+  font-weight: bold;
+  text-align: center;
+}
 
 summary {
-    color:aliceblue;
+  color: aliceblue;
 }
 
 .text {
-    color:aliceblue;
+  color: aliceblue;
 }
 
 details {
-    background: #0f79af;
-    margin-bottom: 2rem;
-    padding: .5rem 1rem;
-  }
-  
+  background: #0f79af;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+}
+
 summary {
-    cursor: pointer;
-  }
-  
+  cursor: pointer;
+}
+
 summary > * {
-    display: inline;
-  }
+  display: inline;
+}
 
 a:link {
-    color: white;
-    background-color: transparent;
-    text-decoration: none;
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
 }
 
 a:visited {
-    color: white;
-    background-color: transparent;
-    text-decoration: none;
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
 }
 
 .main h1 {

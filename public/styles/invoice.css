@@ -1,11 +1,11 @@
-.invoice{
-    position: absolute;
-    width: 1300px;
-    padding: 50px;
-  }
+.invoice {
+  position: absolute;
+  width: 1300px;
+  padding: 50px;
+}
 
-#payment-details{
-    color: black;
+#payment-details {
+  color: black;
 }
 
 .container {
@@ -16,7 +16,7 @@
 }
 
 .invoice-title {
-  text-align: center; 
+  text-align: center;
   color: #0f79af;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .invoice-table {
-  width: 100%; 
-  margin: auto; 
-  padding: 2em
+  width: 100%;
+  margin: auto;
+  padding: 2em;
 }
