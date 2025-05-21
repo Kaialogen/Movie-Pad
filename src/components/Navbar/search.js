@@ -1,4 +1,4 @@
-function submitted() {
+export default function submitted() {
   const input = document.getElementById('query').value.toLowerCase();
   const baseURL = document.URL.split('http://localhost:3000')[0];
 
