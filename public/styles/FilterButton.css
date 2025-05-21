@@ -1,5 +1,7 @@
 /* The dropdown container */
 .dropdown {
+  position: relative;
+  top: 80px;
   float: left;
   overflow: hidden;
 }
@@ -32,6 +34,7 @@
   text-decoration: none;
   display: block;
   text-align: left;
+  border-style: none;
 }
 
 /* Add a grey background color to dropdown links on hover */
