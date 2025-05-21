@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html class="u-responsive-xl" lang="en-GB">
   <head>
@@ -16,7 +16,13 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link href="/styles/main.css" rel="stylesheet" />
     <link href="/styles/NavBar.css" rel="stylesheet" />
     <link href="/styles/Categories.css" rel="stylesheet" />
@@ -30,7 +36,14 @@
         <a href="/basket.html" class="basket"><i class="fa-solid fa-shopping-basket"></i></a>
         <a href="/login.html" class="user"><i class="fa-solid fa-user"></i></a>
         <a href="/help.html" class="help"><i class="fa-solid fa-question"></i></a>
-        <a href="./Categories.html" class="Genre" onmouseover="document.getElementById('dropdown-content').style.display='block';" onmouseleave="document.getElementById('dropdown-content').style.display='none';" onFocus="document.getElementById('dropdown-content').style.display='block';"><i class="fa-solid fa-bars"></i></a>
+        <a
+          href="./Categories.html"
+          class="Genre"
+          onmouseover="document.getElementById('dropdown-content').style.display='block';"
+          onmouseleave="document.getElementById('dropdown-content').style.display='none';"
+          onFocus="document.getElementById('dropdown-content').style.display='block';"
+          ><i class="fa-solid fa-bars"></i
+        ></a>
         <div class="homebtn">
           <button class="homebtn-btn" onclick="location.href='/index.html';">
             <img src="images/FullName.png" class="logo" width="180" height="44" alt="Home Button" />
@@ -42,8 +55,13 @@
         </form>
       </nav>
 
-          <!-- Genre Container -->
-      <div class="dropdown" onmouseover="document.getElementById('dropdown-content').style.display='block';" onmouseleave="document.getElementById('dropdown-content').style.display='none';" onFocus="document.getElementById('dropdown-content').style.display='block';">
+      <!-- Genre Container -->
+      <div
+        class="dropdown"
+        onmouseover="document.getElementById('dropdown-content').style.display='block';"
+        onmouseleave="document.getElementById('dropdown-content').style.display='none';"
+        onFocus="document.getElementById('dropdown-content').style.display='block';"
+      >
         <div class="dropdown-content" id="dropdown-content">
           <button onclick="action()">Action</button>
           <button onclick="adventure()">Adventure</button>
@@ -62,10 +80,10 @@
     </div>
 
     <!-- Main Container -->
-     <div class="categories">
-        <h1>Categories</h1>
-        <p>Click on a category to view the movies available.</p>
-     <div class="categories-grid">
+    <div class="categories">
+      <h1>Categories</h1>
+      <p>Click on a category to view the movies available.</p>
+      <div class="categories-grid">
         <a href="#" class="category-item">
           <img src="images/Action.jpg" alt="Action" />
           <h2>Action</h2>
@@ -114,9 +132,7 @@
           <img src="images/Western.jpg" alt="Western" />
           <h2>Western</h2>
         </a>
-     </div>
+      </div>
     </div>
-
   </body>
-
 </html>
