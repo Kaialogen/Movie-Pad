@@ -1,8 +1,3 @@
-/*
-  JavaScript is out of scope for this assignment.
-  You should not modify anything inside this file.
-*/
-
 const movies = [
   {
     id: 1,
@@ -185,3 +180,5 @@ const movies = [
     price: 0.49,
   },
 ];
+
+export default movies;
