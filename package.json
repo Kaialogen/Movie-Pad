@@ -4,12 +4,16 @@
   "description": "A mockup netflix clone",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "prettier": "npx prettier . --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "prettier": "3.5.3"
   }
 }
