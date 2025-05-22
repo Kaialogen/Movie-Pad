@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 import './NavBar.css';
 import submitted from './search';
 
@@ -15,13 +17,13 @@ export default function NavBar() {
           <a href='/help.html' className='help'>
             <i className='fa-solid fa-question' />
           </a>
-          <a href='./Categories.html' className='Genre'>
+          <Link to='/categories' className='Genre'>
             <i className='fa-solid fa-bars' />
-          </a>
+          </Link>
           <div className='homebtn'>
-            <button className='homebtn-btn'>
+            <Link to='/' className='homebtn-btn'>
               <img src='images/FullName.png' className='logo' width={180} height={44} alt='Home Button' />
-            </button>
+            </Link>
           </div>
           <form className='search-bar' method='post' onSubmit={submitted} role='search'>
             <i className='fa fa-fw fa-search search-icon' />
