@@ -14,9 +14,9 @@ export default function NavBar() {
           <a href='/login.html' className='user'>
             <i className='fa-solid fa-user' />
           </a>
-          <a href='/help.html' className='help'>
+          <Link to='/help' href='/help.html' className='help'>
             <i className='fa-solid fa-question' />
-          </a>
+          </Link>
           <Link to='/categories' className='Genre'>
             <i className='fa-solid fa-bars' />
           </Link>
