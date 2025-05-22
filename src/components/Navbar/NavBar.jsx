@@ -11,9 +11,9 @@ export default function NavBar() {
           <a href='/basket.html' className='basket'>
             <i className='fa-solid fa-shopping-basket' />
           </a>
-          <a href='/login.html' className='user'>
+          <Link to='/login' className='user'>
             <i className='fa-solid fa-user' />
-          </a>
+          </Link>
           <Link to='/help' href='/help.html' className='help'>
             <i className='fa-solid fa-question' />
           </Link>
