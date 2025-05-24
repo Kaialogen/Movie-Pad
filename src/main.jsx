@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage.jsx';
 import CategoriesPage from './pages/CategoriesPage.jsx';
 import HelpPage from './pages/HelpPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import SignupPage from './pages/SignupPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/categories' element={<CategoriesPage />} />
         <Route path='/help' element={<HelpPage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
