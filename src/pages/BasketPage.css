@@ -8,7 +8,7 @@
   width: 70%;
   margin: auto;
   padding: 2em;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
 .invoice table {
@@ -63,6 +63,7 @@ tbody {
 .pay {
   border-color: #04aa6d;
   color: green;
+  margin-right: 20px;
 }
 
 .pay:hover {

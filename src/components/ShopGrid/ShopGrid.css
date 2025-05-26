@@ -130,17 +130,15 @@
   }
 }
 
-.button-1 {
-  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-  border: 0;
+.MoreInfoButton {
+  background-color: #0f79af;
+  border: 0px;
   border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-family: Phantomsans, sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 29px;
   padding: 0 10px 0 11px;
   position: relative;
@@ -154,28 +152,26 @@
   height: 50px;
 }
 
-.button-1:hover {
-  background-color: #f7fafa;
+.MoreInfoButton:hover {
+  background-color: #5ca8ce;
   outline: 0;
 }
 
-.button-1:focus {
+.MoreInfoButton:focus {
   border-color: #008296;
   box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
   outline: 0;
 }
 
-.button-2 {
-  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-  border: 0;
+.AddToBasketButton {
+  background-color: #0f79af;
+  border: 0px;
   border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-family: Phantomsans, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 29px;
   padding: 0 10px 0 11px;
   position: relative;
@@ -185,16 +181,16 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
-  width: 100px;
+  width: 120px;
   height: 50px;
 }
 
-.button-2:hover {
-  background-color: #f7fafa;
+.AddToBasketButton:hover {
+  background-color: #5ca8ce;
   outline: 0;
 }
 
-.button-2:focus {
+.AddToBasketButton:focus {
   border-color: #008296;
   box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
   outline: 0;
