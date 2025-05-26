@@ -8,13 +8,13 @@ export default function NavBar() {
     <>
       <div className='topnav'>
         <nav>
-          <a href='/basket.html' className='basket'>
+          <Link to='/basket' className='basket'>
             <i className='fa-solid fa-shopping-basket' />
-          </a>
+          </Link>
           <Link to='/login' className='user'>
             <i className='fa-solid fa-user' />
           </Link>
-          <Link to='/help' href='/help.html' className='help'>
+          <Link to='/help' className='help'>
             <i className='fa-solid fa-question' />
           </Link>
           <Link to='/categories' className='Genre'>
