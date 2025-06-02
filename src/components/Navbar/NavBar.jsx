@@ -4,6 +4,21 @@ import './NavBar.css';
 import submitted from './search';
 
 export default function NavBar() {
+  // Function to handle mouse enter event for the dropdown
+  const handleMouseEnter = () => {
+    const dropdownContent = document.getElementById('dropdown-content');
+    if (dropdownContent) {
+      dropdownContent.style.display = 'block';
+    }
+  };
+  // Function to handle mouse leave event for the dropdown
+  const handleMouseLeave = () => {
+    const dropdownContent = document.getElementById('dropdown-content');
+    if (dropdownContent) {
+      dropdownContent.style.display = 'none';
+    }
+  };
+
   return (
     <>
       <div className='topnav'>
@@ -17,7 +32,7 @@ export default function NavBar() {
           <Link to='/help' className='help'>
             <i className='fa-solid fa-question' />
           </Link>
-          <Link to='/categories' className='Genre'>
+          <Link to='/categories' className='Genre' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <i className='fa-solid fa-bars' />
           </Link>
           <div className='homebtn'>
@@ -33,20 +48,18 @@ export default function NavBar() {
 
         <div className='dropdown'>
           <div className='dropdown-content' id='dropdown-content'>
-            {/*
-            <button onClick='action()'>Action</button>
-            <button onClick='adventure()'>Adventure</button>
-            <button onClick='animation()'>Animation</button>
-            <button onClick='comedy()'>Comedy</button>
-            <button onClick='crime()'>Crime</button>
-            <button onClick='drama()'>Drama</button>
-            <button onClick='fantasy()'>Fantasy</button>
-            <button onClick='horror()'>Horror</button>
-            <button onClick='romance()'>Romance</button>
-            <button onClick='scienceFiction()'>Science Fiction</button>
-            <button onClick='thriller()'>Thriller</button>
-            <button onClick='western()'>Western</button>
-            */}
+            <button>Action</button>
+            <button>Adventure</button>
+            <button>Animation</button>
+            <button>Comedy</button>
+            <button>Crime</button>
+            <button>Drama</button>
+            <button>Fantasy</button>
+            <button>Horror</button>
+            <button>Romance</button>
+            <button>Science Fiction</button>
+            <button>Thriller</button>
+            <button>Western</button>
           </div>
         </div>
       </div>
