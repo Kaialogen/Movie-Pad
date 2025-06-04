@@ -1,0 +1,21 @@
+.order-main {
+  position: relative;
+  margin: auto;
+  width: 1300px;
+  padding: 80px;
+  box-sizing: border-box;
+}
+
+.checkout-title {
+  text-align: center;
+  color: white;
+}
+
+.checkout-row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+  top: 60px;
+}

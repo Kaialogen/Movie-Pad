@@ -8,6 +8,7 @@ import HelpPage from './pages/HelpPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import BasketPage from './pages/BasketPage.jsx';
+import CheckoutPage from './pages/CheckoutPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/basket' element={<BasketPage />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
