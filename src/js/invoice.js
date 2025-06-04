@@ -9,21 +9,6 @@ const basket = JSON.parse(sessionStorage.getItem('basket') ?? '[]');
 let totalPrice = 0.0;
 let itemPrice = 0.0;
 
-// Create a date object and retrieve the day, month, and year
-let date = new Date();
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
-
-// Format the payment date
-let paymentDate = `${day}-${month}-${year}`;
-
-// Generate four random numbers for the payment order reference
-let paymentOrderRef1 = Math.floor(Math.random() * 9) + 1;
-let paymentOrderRef2 = Math.floor(Math.random() * 9) + 1;
-let paymentOrderRef3 = Math.floor(Math.random() * 9) + 1;
-let paymentOrderRef4 = Math.floor(Math.random() * 9) + 1;
-
 // Loop through each item in the shopping basket
 basket.forEach((basketItem) => {
   // Calculate the item price by multiplying the price and number of rental days
@@ -58,11 +43,6 @@ document.getElementById('postcode').textContent = paymentDetails.postcode;
 
 // Update the payment details in the HTML DOM with the payment information, date and order reference
 document.getElementById('total-price').textContent = totalPrice;
-document.getElementById('payment-date').textContent = paymentDate;
-document.getElementById('payment-order-ref-1').textContent = paymentOrderRef1;
-document.getElementById('payment-order-ref-2').textContent = paymentOrderRef2;
-document.getElementById('payment-order-ref-3').textContent = paymentOrderRef3;
-document.getElementById('payment-order-ref-4').textContent = paymentOrderRef4;
 
 // Clear the local storage
 sessionStorage.clear();
