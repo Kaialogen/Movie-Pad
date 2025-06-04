@@ -1,9 +1,11 @@
-export default function AddToBasketButton({ movie }) {
+import movies from '../../db/movies.js';
+
+export default function AddToBasketButton(props) {
   // Get the basket from sessionStorage, or initialise an empty array if it doesn't exist
   const save = JSON.parse(sessionStorage.getItem('save') ?? '[]');
   const basket = JSON.parse(sessionStorage.getItem('basket') ?? '[]');
 
-  function addToBasket(movieId) {
+  function addToBasket(movieId, daysRent) {
     // Get the movie from data and add to the basket
     const movie = movies.find((movie) => movie.id === movieId);
 
@@ -14,9 +16,6 @@ export default function AddToBasketButton({ movie }) {
 
     // Check if the movie is already in the "save" list
     const exists = basket.some((item) => item.id === movie.id);
-
-    // Retrieve the number of days the user wants to rent the movie
-    let daysRent = parseInt(document.getElementById('days-to-rent-' + movieId).value);
 
     // Validate rental days input
     if (isNaN(daysRent) || daysRent <= 0) {
@@ -82,7 +81,7 @@ export default function AddToBasketButton({ movie }) {
   }
 
   return (
-    <button className='AddToBasketButton' onClick={() => alert(`Item: ${movie} added to basket`)}>
+    <button className='AddToBasketButton' onClick={() => addToBasket(props.movieId, props.days)}>
       Add to Basket
     </button>
   );

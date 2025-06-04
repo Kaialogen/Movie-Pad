@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar/NavBar.jsx';
+import NavBar from '../components/Navbar/NavBar.jsx';
 import SlideShow from '../components/SlideShow/SlideShow.jsx';
 import ShopGrid from '../components/ShopGrid/ShopGrid.jsx';
 
