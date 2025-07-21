@@ -1,12 +1,16 @@
+// components/ClearBasketButton/ClearBasketButton.js
+import { useDispatch } from 'react-redux';
+import { clearBasket } from '../../store/basketSlice';
+
 export default function ClearBasketButton() {
-  // Function to clear the basket
-  const ClearBasket = () => {
-    sessionStorage.setItem('basket', '[]');
-    window.location.reload();
+  const dispatch = useDispatch();
+
+  const handleClear = () => {
+    dispatch(clearBasket());
   };
 
   return (
-    <button className='btn clear' onClick={ClearBasket}>
+    <button className='btn clear' onClick={handleClear}>
       Clear Basket
     </button>
   );

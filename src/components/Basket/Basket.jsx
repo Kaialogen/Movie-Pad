@@ -1,64 +1,46 @@
-import { useState, useEffect } from 'react';
+// components/Basket/Basket.js
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadFromStorage, removeItem, increaseDays, decreaseDays } from '../../store/basketSlice';
+
 import ClearBasketButton from '../ClearBasketButton/ClearBasketButton';
 import CheckoutBasketButton from '../CheckoutBasketButton/CheckoutBasketButton';
 
 export default function Basket() {
-  const [basket, setBasket] = useState([]);
-  const [save, setSave] = useState([]);
+  const dispatch = useDispatch();
 
+  const basket = useSelector((state) => state.basket.basket);
+  const save = useSelector((state) => state.basket.save);
+
+  // Load from sessionStorage on mount
   useEffect(() => {
-    const storedBasket = JSON.parse(sessionStorage.getItem('basket') ?? '[]');
-    const storedSave = JSON.parse(sessionStorage.getItem('save') ?? '[]');
-    setBasket(storedBasket);
-    setSave(storedSave);
-  }, []);
+    dispatch(loadFromStorage());
+  }, [dispatch]);
 
-  const updateStorage = (updatedBasket, updatedSave) => {
-    setBasket(updatedBasket);
-    setSave(updatedSave);
-    sessionStorage.setItem('basket', JSON.stringify(updatedBasket));
-    sessionStorage.setItem('save', JSON.stringify(updatedSave));
-  };
+  // Save to sessionStorage whenever basket or save changes
+  useEffect(() => {
+    sessionStorage.setItem('basket', JSON.stringify(basket));
+    sessionStorage.setItem('save', JSON.stringify(save));
+  }, [basket, save]);
 
-  const RemoveMovie = (movieinput) => {
-    const index = basket.findIndex((item) => item.name === movieinput);
-    if (index > -1) {
-      const updatedBasket = [...basket];
-      const updatedSave = [...save];
-      updatedBasket.splice(index, 1);
-      updatedSave.splice(index, 1);
-      updateStorage(updatedBasket, updatedSave);
-    }
-  };
-
-  const AddDays = (movieName) => {
-    const index = basket.findIndex((item) => item.name === movieName);
-    if (index > -1 && basket[index].rentDays < 30) {
-      const updatedBasket = [...basket];
-      updatedBasket[index].rentDays += 1;
-      updateStorage(updatedBasket, save);
-    } else if (index > -1) {
+  const handleAddDays = (movieName) => {
+    const item = basket.find((item) => item.name === movieName);
+    if (item?.rentDays >= 30) {
       alert('Sorry you cannot rent a movie longer than 30 days.');
+      return;
     }
+    dispatch(increaseDays(movieName));
   };
 
-  const SubDays = (movieName) => {
-    const index = basket.findIndex((item) => item.name === movieName);
-    if (index > -1) {
-      const updatedBasket = [...basket];
-      const updatedSave = [...save];
-      if (updatedBasket[index].rentDays > 1) {
-        updatedBasket[index].rentDays -= 1;
-        updateStorage(updatedBasket, updatedSave);
-      } else {
-        updatedBasket.splice(index, 1);
-        updatedSave.splice(index, 1);
-        updateStorage(updatedBasket, updatedSave);
-      }
-    }
+  const handleSubDays = (movieName) => {
+    dispatch(decreaseDays(movieName));
   };
 
-  let totalPrice = basket.reduce((acc, item) => acc + item.price * item.rentDays, 0);
+  const handleRemoveMovie = (movieName) => {
+    dispatch(removeItem(movieName));
+  };
+
+  const totalPrice = basket.reduce((acc, item) => acc + item.price * item.rentDays, 0);
 
   return (
     <div className='invoice'>
@@ -77,31 +59,29 @@ export default function Basket() {
               </tr>
             </thead>
             <tbody>
-              {basket.map((basketItem) => {
-                const itemPrice = (basketItem.price * basketItem.rentDays).toFixed(2);
-                return (
-                  <tr key={basketItem.name}>
-                    <td>
-                      <button onClick={() => RemoveMovie(basketItem.name)} className='red-x'>
-                        x
-                      </button>{' '}
-                      {basketItem.name}
-                    </td>
-                    <td>
-                      <button onClick={() => SubDays(basketItem.name)} className='neg'>
-                        -
-                      </button>{' '}
-                      {basketItem.rentDays}{' '}
-                      <button onClick={() => AddDays(basketItem.name)} className='add'>
-                        +
-                      </button>
-                    </td>
-                    <td>£{itemPrice}</td>
-                  </tr>
-                );
-              })}
+              {basket.map((item) => (
+                <tr key={item.name}>
+                  <td>
+                    <button onClick={() => handleRemoveMovie(item.name)} className='red-x'>
+                      x
+                    </button>{' '}
+                    {item.name}
+                  </td>
+                  <td>
+                    <button onClick={() => handleSubDays(item.name)} className='neg'>
+                      -
+                    </button>{' '}
+                    {item.rentDays}{' '}
+                    <button onClick={() => handleAddDays(item.name)} className='add'>
+                      +
+                    </button>
+                  </td>
+                  <td>£{(item.price * item.rentDays).toFixed(2)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
+
           <hr />
           <div className='right-align-text'>
             <strong>Total Price:</strong> £<span>{totalPrice.toFixed(2)}</span>

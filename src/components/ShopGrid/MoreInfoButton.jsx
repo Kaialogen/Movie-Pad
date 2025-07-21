@@ -1,7 +1,9 @@
+import { Link } from 'react-router';
+
 export default function MoreInfoButton(props) {
   return (
-    <button className='MoreInfoButton' onClick={() => alert('More information about the movie: ' + props.movieId)}>
+    <Link className='MoreInfoButton' to={`/movie/${props.movieId}`}>
       More Info
-    </button>
+    </Link>
   );
 }
