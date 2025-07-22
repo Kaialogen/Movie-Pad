@@ -30,8 +30,8 @@ export default function ShopGrid() {
             <p className='text'>Price: £{movie.price.toFixed(2)} per day</p>
             <input type='number' id='days-to-rent-1' name='quantity' value={days} onChange={handleDaysChange} />
             <AddToBasketButton movieId={movie.id} days={days} />
+            <MoreInfoButton movieId={movie.id} />
             <p className='text'>{movie.description}</p>
-            <MoreInfoButton movieId={movie.name} />
           </div>
         </div>
       ))}
