@@ -10,9 +10,10 @@ export default function CheckoutPage() {
       <Navbar />
       <div className='order-main'>
         <h1 className='checkout-title'>Checkout</h1>
-        <div className='checkout-row'></div>
-        <CheckoutForm />
-        <BasketWidget />
+        <div className='checkout-row'>
+          <CheckoutForm />
+          <BasketWidget />
+        </div>
       </div>
     </>
   );

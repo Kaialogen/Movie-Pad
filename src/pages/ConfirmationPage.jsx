@@ -1,4 +1,5 @@
-import NavBar from '../components/Navbar/NavBar';
+import { useSelector } from 'react-redux';
+import NavBar from '../components/NavBar/NavBar';
 
 import './ConfirmationPage.css';
 
@@ -10,6 +11,10 @@ export default function Confirmation() {
   });
 
   const random4DigitNumber = Math.floor(1000 + Math.random() * 9000);
+
+  const basket = useSelector((state) => state.basket.basket);
+
+  const totalPrice = basket.reduce((sum, item) => sum + item.price * item.rentDays, 0).toFixed(2);
 
   return (
     <>
@@ -57,21 +62,18 @@ export default function Confirmation() {
                     </tr>
                   </thead>
                   <tbody style={{ textAlign: 'left' }} id='basket'>
-                    <tr>
-                      <td />
-                      <td />
-                      <td />
-                    </tr>
-                    <tr>
-                      <td />
-                      <td />
-                      <td />
-                    </tr>
+                    {basket.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>{item.rentDays}</td>
+                        <td>£{(item.price * item.rentDays).toFixed(2)}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
                 <hr />
                 <div style={{ textAlign: 'left' }}>
-                  <strong>Total Price:</strong> £<span id='total-price' />
+                  <strong>Total Price:</strong> £<span id='total-price'>{totalPrice}</span>
                 </div>
                 <hr />
               </div>
