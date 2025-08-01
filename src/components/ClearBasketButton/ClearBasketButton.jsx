@@ -10,7 +10,10 @@ export default function ClearBasketButton() {
   };
 
   return (
-    <button className='btn clear' onClick={handleClear}>
+    <button
+      className='inline-block px-4 py-2 bg-red-600 text-slate-50 rounded pointer hover:bg-red-400'
+      onClick={handleClear}
+    >
       Clear Basket
     </button>
   );

@@ -14,7 +14,10 @@ export default function CheckoutBasketButton() {
   };
 
   return (
-    <button className='btn pay' onClick={proceedToCheckout}>
+    <button
+      className='inline-block px-4 py-2 bg-purple-700 text-slate-50 font-inter rounded hover:bg-purple-500'
+      onClick={proceedToCheckout}
+    >
       Proceed to Checkout
     </button>
   );
