@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { useState } from 'react';
 import Searchbar from '../Searchbar/Searchbar';
+import HomeButton from '../HomeButton/homeButton';
 
 export default function NavBar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -8,21 +9,7 @@ export default function NavBar() {
   return (
     <div className='fixed top-0 w-full z-10 bg-[#1b2530] shadow-md'>
       <nav className='flex items-center justify-between px-4'>
-        {/* Left: Home Button */}
-        <div className='flex items-center'>
-          <div className='relative left-2 top-3'>
-            <Link to='/' className='homebtn-btn text-white bg-transparent font-sans cursor-pointer'>
-              <img
-                src='images/FullName.png'
-                className='inline-block relative left-1/2 -translate-x-1/2'
-                width={180}
-                height={44}
-                alt='Home Button'
-              />
-            </Link>
-          </div>
-        </div>
-
+        <HomeButton />
         <Searchbar />
 
         {/* Right: Nav Links */}
