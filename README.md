@@ -11,7 +11,9 @@ This project has been modified outside of the module to be dockerised. It is cur
 modern stack. This stack with be a MERN stack with a React frontend and Node.js backend. The current stack is a simple
 HTML/CSS/JS frontend with a Node.js backend.
 
-![MoviePad](./Images/IndexPage.png)
+## Tech Stack
+
+- frontend: HTML, CSS, JavaScript, react, react-router, redux
 
 ## Getting Started
 
@@ -19,3 +21,7 @@ HTML/CSS/JS frontend with a Node.js backend.
 
 (This project is currently in maintainance and is not in a production ready state. It is a demo website for educational
 purposes only.)
+
+## Gallery
+
+![MoviePad](./Images/IndexPage.png)
