@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { slides } from './slides';
-import './SlideShow.css';
 
 export default function SlideShow() {
   const paragraph =
@@ -17,15 +16,13 @@ export default function SlideShow() {
 
   return (
     <>
-      <div className='slideshow-container'>
+      <div className='max-w-[1800px] mx-auto relative mt-[80px]'>
         {slides.map((slide, index) => (
           <div key={index} className={`mySlides fade`} style={{ display: index === slideIndex ? 'block' : 'none' }}>
-            <div className='numbertext'>
-              <img className='image-scaling' src={slide.src} alt={slide.alt} />
-              <div className='text-block'>
-                <h4>Welcome to Moviepad</h4>
-                <p>{paragraph}</p>
-              </div>
+            <img className='w-[100%] h-[350px] m-5' src={slide.src} alt={slide.alt} />
+            <div className='absolute top-[40px] left-[20px] max-w-[600px] bg-slate-900/90 p-4 rounded-2xl pl-5 pr-5 ml-5'>
+              <h4 className='text-slate-50 text-2xl text-center font-inter pb-[20px]'>Welcome to Moviepad!</h4>
+              <p className='text-slate-50 font-inter'>{paragraph}</p>
             </div>
           </div>
         ))}

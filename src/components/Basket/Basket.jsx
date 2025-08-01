@@ -43,36 +43,33 @@ export default function Basket() {
   const totalPrice = basket.reduce((acc, item) => acc + item.price * item.rentDays, 0);
 
   return (
-    <div className='invoice'>
+    <div className='absolute w-full p-12'>
       <article>
-        <br />
-        <br />
-        <br />
-        <h1>Basket</h1>
-        <div className='container'>
-          <table>
+        <h1 className='text-center text-2xl pb-5 pt-10 text-slate-50'>Basket</h1>
+        <div className='bg-slate-100 w-1/2 mx-auto p-8 rounded-3xl space-y-8 mt-10'>
+          <table className='w-full'>
             <thead>
-              <tr>
+              <tr className='text-slate-900 text-left'>
                 <th className='th1'>Movie</th>
                 <th className='th2'>Days</th>
                 <th className='th3'>Price</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='text-slate-900 text-left'>
               {basket.map((item) => (
                 <tr key={item.name}>
                   <td>
-                    <button onClick={() => handleRemoveMovie(item.name)} className='red-x'>
+                    <button onClick={() => handleRemoveMovie(item.name)} className='text-red-600'>
                       x
                     </button>{' '}
                     {item.name}
                   </td>
                   <td>
-                    <button onClick={() => handleSubDays(item.name)} className='neg'>
+                    <button onClick={() => handleSubDays(item.name)} className='hover:cursor-pointer'>
                       -
                     </button>{' '}
                     {item.rentDays}{' '}
-                    <button onClick={() => handleAddDays(item.name)} className='add'>
+                    <button onClick={() => handleAddDays(item.name)} className='hover:cursor-pointer'>
                       +
                     </button>
                   </td>
@@ -82,13 +79,14 @@ export default function Basket() {
             </tbody>
           </table>
 
-          <hr />
-          <div className='right-align-text'>
+          <hr className='text-slate-900' />
+          <div className='text-right text-slate-900 font-bold pt-2'>
             <strong>Total Price:</strong> £<span>{totalPrice.toFixed(2)}</span>
           </div>
-          <hr />
-          <CheckoutBasketButton />
-          <ClearBasketButton />
+          <div className='pt-2 flex justify-center items-center gap-4'>
+            <CheckoutBasketButton />
+            <ClearBasketButton />
+          </div>
         </div>
       </article>
     </div>
