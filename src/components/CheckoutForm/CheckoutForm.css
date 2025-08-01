@@ -48,14 +48,6 @@
   background-color: #45a049;
 }
 
-input[type='email'] {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
 .checkout-form-label {
   margin-bottom: 10px;
   display: block;
