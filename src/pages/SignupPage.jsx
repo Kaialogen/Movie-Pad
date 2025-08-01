@@ -13,7 +13,7 @@ export default function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   function validateEmail(email) {
-    return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    return /^[A-Za-z0-9]+([.-][A-Za-z0-9]+)*@[A-Za-z0-9]+([.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/.test(email);
   }
 
   function handleSubmit(event) {
