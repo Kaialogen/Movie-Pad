@@ -1,64 +1,49 @@
 import NavBar from '../components/NavBar/NavBar';
-import './CategoriesPage.css';
 
 export default function CategoriesPage() {
+  const categories = [
+    'Action',
+    'Adventure',
+    'Animation',
+    'Comedy',
+    'Crime',
+    'Drama',
+    'Fantasy',
+    'Horror',
+    'Romance',
+    'ScienceFiction',
+    'Thriller',
+    'Western',
+  ];
+
   return (
-    <>
+    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter'>
       <NavBar />
-      <div className='categories'>
-        <h1>Categories</h1>
-        <p>Click on a category to view the movies available.</p>
-        <div className='categories-grid'>
-          <a href='#' className='category-item'>
-            <img src='images/Action.jpg' alt='Action' />
-            <h2>Action</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Adventure.jpg' alt='Adventure' />
-            <h2>Adventure</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Animation.jpg' alt='Animation' />
-            <h2>Animation</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Comedy.jpg' alt='Comedy' />
-            <h2>Comedy</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Crime.jpg' alt='Crime' />
-            <h2>Crime</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Drama.jpg' alt='Drama' />
-            <h2>Drama</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Fantasy.jpg' alt='Fantasy' />
-            <h2>Fantasy</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Horror.jpg' alt='Horror' />
-            <h2>Horror</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Romance.jpg' alt='Romance' />
-            <h2>Romance</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/ScienceFiction.jpg' alt='Science Fiction' />
-            <h2>Science Fiction</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Thriller.jpg' alt='Thriller' />
-            <h2>Thriller</h2>
-          </a>
-          <a href='#' className='category-item'>
-            <img src='images/Western.jpg' alt='Western' />
-            <h2>Western</h2>
-          </a>
+      <section className='pt-24 px-8 max-w-7xl mx-auto'>
+        <div className='text-center mb-12'>
+          <h1 className='text-4xl font-bold mb-2'>Categories</h1>
+          <p className='text-slate-300 text-lg'>Click on a category to view available movies.</p>
         </div>
-      </div>
-    </>
+
+        <div className='grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+          {categories.map((category) => (
+            <a
+              key={category}
+              href='#'
+              className='group relative rounded-xl overflow-hidden bg-slate-800 shadow-md hover:shadow-xl transition duration-300'
+            >
+              <img
+                src={`/images/${category}.jpg`}
+                alt={category}
+                className='w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300'
+              />
+              <div className='absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent px-4 py-3'>
+                <h2 className='text-white text-lg font-semibold'>{category.replace(/([A-Z])/g, ' $1').trim()}</h2>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

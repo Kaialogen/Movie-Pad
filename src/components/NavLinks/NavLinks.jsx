@@ -32,7 +32,7 @@ export default function NavLinks() {
           <i className='fa-solid fa-bars' />
         </NavLink>
         <div
-          className={`dropdown-content absolute right-0 mt-2 bg-slate-900 shadow-lg rounded z-50 min-w-[180px] ${
+          className={`dropdown-content absolute right-0 mt-2 bg-slate-950 shadow-lg rounded z-50 min-w-[180px] ${
             dropdownOpen ? 'block' : 'hidden'
           }`}
         >
@@ -52,7 +52,7 @@ export default function NavLinks() {
           ].map((genre) => (
             <button
               key={genre}
-              className='w-full text-left px-4 py-3 text-white bg-slate-900 border-none hover:bg-purple-500 transition'
+              className='w-full text-left px-4 py-3 text-white bg-slate-950 border-none hover:bg-purple-500 transition'
             >
               {genre}
             </button>

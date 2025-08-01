@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
 import NavBar from '../components/NavBar/NavBar';
 
-import './ConfirmationPage.css';
-
 export default function Confirmation() {
   const orderDate = new Date().toLocaleDateString('en-GB', {
     day: '2-digit',
@@ -17,13 +15,13 @@ export default function Confirmation() {
   const totalPrice = basket.reduce((sum, item) => sum + item.price * item.rentDays, 0).toFixed(2);
 
   return (
-    <>
+    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter'>
       <NavBar />;
-      <div className='invoice'>
+      <div className='relative m-auto w-[1300px] p-20'>
         <article>
-          <h1 className='invoice-title'>Thank You For Your Order!</h1>
-          <div className='invoice-container'>
-            <h2 className='invoice-header'>Receipt</h2>
+          <h1 className='text-center text-2xl pb-5 pt-20 text-slate-50'>Thank You For Your Order!</h1>
+          <div className='text-slate-900 rounded bg-slate-50 p-10'>
+            <h2 className='text-center text-2xl'>Receipt</h2>
             <div id='payment-details' className='payment-details'>
               <p className='details'>
                 Date: {orderDate}
@@ -32,10 +30,6 @@ export default function Confirmation() {
               <p className='details'>
                 Order Reference:
                 <span> # {random4DigitNumber}</span>
-                <span id='payment-order-ref-1' />
-                <span id='payment-order-ref-2' />
-                <span id='payment-order-ref-3' />
-                <span id='payment-order-ref-4' />
               </p>
               <p className='info'>
                 <span id='payment-details-title' className='payment-detail' />
@@ -52,16 +46,16 @@ export default function Confirmation() {
                 <span id='payment-details-cardNumber' className='payment-detail' />
               </p>
               <br />
-              <div className='invoice-table'>
-                <table style={{ width: '90%' }}>
+              <div className='w-full m-auto p-8'>
+                <table className='w-full text-left border-collapse'>
                   <thead>
-                    <tr style={{ textAlign: 'left' }}>
+                    <tr className='text-left'>
                       <th>Movie</th>
                       <th>Days</th>
                       <th>Price</th>
                     </tr>
                   </thead>
-                  <tbody style={{ textAlign: 'left' }} id='basket'>
+                  <tbody className='text-left' id='basket'>
                     {basket.map((item) => (
                       <tr key={item.id}>
                         <td>{item.name}</td>
@@ -72,7 +66,7 @@ export default function Confirmation() {
                   </tbody>
                 </table>
                 <hr />
-                <div style={{ textAlign: 'left' }}>
+                <div className='text-right font-bold mt-4'>
                   <strong>Total Price:</strong> £<span id='total-price'>{totalPrice}</span>
                 </div>
                 <hr />
@@ -81,6 +75,6 @@ export default function Confirmation() {
           </div>
         </article>
       </div>
-    </>
+    </div>
   );
 }
