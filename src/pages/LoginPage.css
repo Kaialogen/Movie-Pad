@@ -43,9 +43,3 @@ button[type='submit'] {
   color: white;
   font-weight: bold;
 }
-
-button:hover {
-  border-color: #0d4561;
-  background-color: #0d4561;
-  color: white;
-}
