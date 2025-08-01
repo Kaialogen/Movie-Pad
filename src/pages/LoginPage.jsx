@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
 
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 
 import './LoginPage.css';
 

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar/NavBar';
-import AddToBasketButton from '../components/ShopGrid/AddToBasketButton';
+import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
 import './MoviePage.css';
 import movies from '../db/movies';
 

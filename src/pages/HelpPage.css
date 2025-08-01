@@ -35,18 +35,6 @@ summary > * {
   display: inline;
 }
 
-a:link {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
 .main h1 {
   text-align: center;
   color: white;
