@@ -1,0 +1,16 @@
+services:
+  mongo-db:
+    image: mongo:latest
+    container_name: Movies-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-init:/docker-entrypoint-initdb.d:ro
+  frontend:
+    build:
+      dockerfile: Dockerfile
+    container_name: MoviePad-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo-db
