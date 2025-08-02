@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 import { FaChevronDown } from 'react-icons/fa';
 
 export default function HelpPage() {

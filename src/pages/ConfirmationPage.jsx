@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 
 export default function Confirmation() {
   const orderDate = new Date().toLocaleDateString('en-GB', {

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
 import movies from '../db/movies';
 

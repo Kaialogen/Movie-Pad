@@ -7,21 +7,29 @@ using HTML, CSS, and JavaScript for the frontend and Node.js for the backend. Th
 movie rental service, where users could browse movies, add them to their cart, and checkout. The website also had a user
 authentication system, allowing users to create accounts and log in.
 
-This project has been modified outside of the module to be dockerised. It is currently being refactored to use a more
-modern stack. This stack with be a MERN stack with a React frontend and Node.js backend. The current stack is a simple
-HTML/CSS/JS frontend with a Node.js backend.
-
 ## Tech Stack
 
-- frontend: HTML, CSS, JavaScript, react, react-router, redux
+- frontend: HTML, React, TailwindCSS, react-router, redux
+- backend: Node.js, Express
 
 ## Getting Started
 
-- To deploy the docker container: `docker compose up --build` or to just deploy node `node server.js`
-
-(This project is currently in maintainance and is not in a production ready state. It is a demo website for educational
-purposes only.)
+- To deploy the docker container: `docker build -t movie-pad . && docker run -p 3000:3000 movie-pad`
 
 ## Gallery
 
-![MoviePad](./Images/IndexPage.png)
+Main Page: ![MoviePad](./Images/MainPage.png)
+
+Movie Page: ![MoviePad](./Images/MoviePage.png)
+
+Basket Page: ![MoviePad](./Images/BasketPage.png)
+
+Checkout Page: ![MoviePad](./Images/CheckoutPage.png)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## Contributing
+
+If you want to contribute to this project, feel free to open an issue or a pull request. Contributions are welcome!

@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../components/Navbar/NavBar';
 import Basket from '../components/Basket/Basket';
 
 export default function BasketPage() {

@@ -1,5 +1,5 @@
 import Searchbar from '../Searchbar/Searchbar';
-import HomeButton from '../HomeButton/homeButton';
+import HomeButton from '../HomeButton/HomeButton';
 import NavLinks from '../NavLinks/NavLinks';
 
 export default function NavBar() {
