@@ -2,19 +2,21 @@
 
 This project was first developed in my second year of university for my Human Behaviour in Cyber Security module.
 
-It was a group project where we had to create a website that would allow users to rent movies. The website was built
-using HTML, CSS, and JavaScript for the frontend and Node.js for the backend. The website was designed to be a simple
-movie rental service, where users could browse movies, add them to their cart, and checkout. The website also had a user
-authentication system, allowing users to create accounts and log in.
+It was a group project where we had to create a website that would allow users to rent movies. The website was developed
+using React and Tailwind for the frontend. The website is designed to be a simple movie rental service, where users can
+browse movies, add them to their cart, and checkout. The website also has a user authentication system, allowing users
+to create accounts and log in.
 
 ## Tech Stack
 
 - frontend: HTML, React, TailwindCSS, react-router, redux
 - backend: Node.js, Express
+- database: MongoDB
+- deployment: Docker, Docker Compose
 
 ## Getting Started
 
-- To deploy the docker container: `docker build -t movie-pad . && docker run -p 3000:3000 movie-pad`
+- To deploy the docker container: `docker-compose up --build`
 
 ## Gallery
 
