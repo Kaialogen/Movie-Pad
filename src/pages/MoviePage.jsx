@@ -48,6 +48,7 @@ export default function MoviePage() {
 
   return (
     <div className='bg-slate-900 min-h-screen text-slate-50 font-inter'>
+      <Toaster position='bottom-right' />
       <NavBar />
       <div className='max-w-6xl mx-auto px-6 py-16'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>

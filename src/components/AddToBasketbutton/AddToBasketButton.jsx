@@ -1,46 +1,44 @@
-// components/AddToBasketButton/AddToBasketButton.js
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, increaseDays } from '../../store/basketSlice';
-import movies from '../../db/movies.js';
+import { addItem } from '../../store/basketSlice';
+import { useMovies } from '../../context/MoviesContext';
+import { toast } from 'sonner';
 
 export default function AddToBasketButton({ movieId, days }) {
   const dispatch = useDispatch();
   const basket = useSelector((state) => state.basket.basket);
+  const { movies } = useMovies();
 
   function addToBasket(movieId, daysRent) {
-    const movie = movies.find((movie) => movie.id === movieId);
+    const movie = movies.find((m) => String(m.id) === String(movieId));
 
     if (!movie) {
-      alert('Movie not found.');
+      toast.error('Movie not found.');
       return;
     }
 
     const rentalDays = isNaN(daysRent) || daysRent <= 0 ? 1 : Math.min(daysRent, 30);
 
     if (isNaN(daysRent) || daysRent <= 0) {
-      alert('Please enter a valid number of days to rent (minimum 1 day). Rent time has been adjusted to 1 day.');
+      toast.warning('Invalid days. Defaulted to 1.');
     } else if (rentalDays < daysRent) {
-      alert('Sorry, you cannot rent a movie for more than 30 days. Rent time has been adjusted to 30 days.');
+      toast.warning('Max rental is 30 days. Adjusted to 30.');
     }
 
     const existing = basket.find((item) => item.id === movie.id);
 
     if (existing) {
       const currentDays = existing.rentDays;
-      const totalDays = currentDays + rentalDays;
+      const totalDays = Math.min(currentDays + rentalDays, 30);
 
-      if (totalDays > 30) {
-        alert(`You can't rent for more than 30 days total. Setting rent days to 30.`);
-        dispatch(addItem({ ...movie, rentDays: 30 }));
-      } else {
-        for (let i = 0; i < rentalDays; i++) {
-          dispatch(increaseDays(movie.name));
-        }
-        alert(`${movie.name} has been updated in your basket. Total rent time is now ${totalDays} days.`);
+      if (totalDays === 30 && currentDays + rentalDays > 30) {
+        toast.error("You can't rent more than 30 days total. Set to 30 days.");
       }
+
+      dispatch(addItem({ ...movie, rentDays: totalDays }));
+      toast.success(`${movie.name} updated. Total rent: ${totalDays} days.`);
     } else {
       dispatch(addItem({ ...movie, rentDays: rentalDays }));
-      alert(`${movie.name} has been added to your basket for ${rentalDays} days.`);
+      toast.success(`${movie.name} added for ${rentalDays} days.`);
     }
   }
 

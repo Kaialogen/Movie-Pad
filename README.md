@@ -25,7 +25,7 @@ data is PostgreSQL, which provides a robust and reliable way to store user infor
 
 ## Tech Stack
 
-- frontend: HTML, React, TailwindCSS, react-router, redux
+- frontend: HTML, React, TailwindCSS, react-router, redux, Shadcn UI, Sonner
 - backend: Node.js, Express, FastAPI
 - user database: PostgreSQL
 - movie database: MongoDB
