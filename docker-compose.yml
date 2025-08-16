@@ -14,3 +14,12 @@ services:
       - "3000:3000"
     depends_on:
       - mongo-db
+  movies-backend:
+    build:
+      context: ./Movies Backend
+      dockerfile: Dockerfile
+    container_name: Movies-backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo-db

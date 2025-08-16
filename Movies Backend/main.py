@@ -14,7 +14,7 @@ app.add_middleware(CORSMiddleware,
 
 @app.get("/api/movies")
 async def get_movies():
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient("mongodb://Movies-db:27017/")
     db = client["MoviesDB"]
     movies_collection = db["movies"]
     
@@ -29,7 +29,7 @@ async def get_movies():
 
 @app.get("/api/movies/{movie_id}")
 async def get_movie(movie_id: str):
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient("mongodb://Movies-db:27017/")
     db = client["MoviesDB"]
     movies_collection = db["movies"]
 

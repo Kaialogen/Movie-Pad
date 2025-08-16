@@ -2,17 +2,15 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar/NavBar';
 import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
-import movies from '../db/movies';
 
 export default function MoviePage() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState([]);
   const [days, setDays] = useState(3);
 
   // Function to handle changes in the number of days input
   const handleDaysChange = (event) => {
     const value = event.target.value;
-    // Ensure the value is a number and within the range of 1 to 30
     if (value >= 1 && value <= 30) {
       setDays(value);
     } else {
@@ -22,8 +20,19 @@ export default function MoviePage() {
 
   useEffect(() => {
     const movieId = parseInt(id, 10);
-    const selectedMovie = movies.find((m) => m.id === movieId);
-    setMovie(selectedMovie);
+    fetch(`http://localhost:8000/api/movies/${movieId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setMovie(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching movie:', error);
+      });
   }, [id]);
 
   if (!movie) {
@@ -78,7 +87,7 @@ export default function MoviePage() {
 
             <div className='pt-4'>
               <p className='text-xl font-semibold text-purple-400'>
-                £{movie.price.toFixed(2)} <span className='text-base font-normal text-slate-300'>per day</span>
+                £{movie.price} <span className='text-base font-normal text-slate-300'>per day</span>
               </p>
 
               <div className='flex items-center gap-4 mt-4'>
