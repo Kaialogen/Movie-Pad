@@ -10,15 +10,33 @@ export default function LoginForm() {
     return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!validateEmail(email)) {
       alert('Please enter a valid email address.');
       return;
     }
 
-    console.log('Logging in with:', { email, password });
-    navigate('/'); // Redirect to home page after login
+    try {
+      const response = await fetch('http://localhost:3000/api/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        alert('Login successful! Redirecting...');
+        navigate('/'); // Redirect to Homepage
+      } else {
+        alert(data.message || 'Login failed.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('Something went wrong. Please try again.');
+    }
   }
   return (
     <article className='w-auto m-auto p-12'>
