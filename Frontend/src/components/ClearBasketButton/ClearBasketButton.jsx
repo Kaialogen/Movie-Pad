@@ -11,7 +11,7 @@ export default function ClearBasketButton() {
 
   return (
     <button
-      className='inline-block px-4 py-2 bg-red-600 text-slate-50 rounded pointer hover:bg-red-400'
+      className='inline-block px-4 py-2 bg-red-600 text-slate-50 rounded cursor-pointer hover:bg-red-400'
       onClick={handleClear}
     >
       Clear Basket

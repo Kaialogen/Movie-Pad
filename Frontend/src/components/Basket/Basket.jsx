@@ -45,7 +45,7 @@ export default function Basket() {
   return (
     <div className='absolute w-full p-12'>
       <article>
-        <h1 className='text-center text-2xl pb-5 pt-10 text-slate-50'>Basket</h1>
+        <h1 className='text-center text-4xl font-bold mb-12 pb-5 pt-10 text-slate-50'>Basket</h1>
         <div className='bg-slate-100 w-1/2 mx-auto p-8 rounded-3xl space-y-8 mt-10'>
           <table className='w-full'>
             <thead>

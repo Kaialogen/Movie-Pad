@@ -35,9 +35,9 @@ export default function HelpPage() {
           {faqs.map((faq, idx) => (
             <details
               key={idx}
-              className='group bg-[#0f79af] rounded-lg shadow-md transition duration-300 open:shadow-lg open:ring-2 open:ring-[#32b9e7] overflow-hidden'
+              className='group bg-purple-700 rounded-lg shadow-md transition duration-300 open:shadow-lg open:ring-2 open:ring-purple-400 overflow-hidden'
             >
-              <summary className='flex items-center justify-between cursor-pointer px-5 py-4 text-lg font-semibold text-white transition-all group-open:bg-[#128ac9]'>
+              <summary className='flex items-center justify-between cursor-pointer px-5 py-4 text-lg font-semibold text-white transition-all group-open:bg-purple-800'>
                 {faq.question}
                 <FaChevronDown className='transition-transform duration-300 group-open:rotate-180' />
               </summary>
