@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
-import { MoviesProvider } from './context/MoviesContext';
+import { MoviesProvider } from './context/MoviesContext.jsx';
 
 import HomePage from './pages/HomePage.jsx';
 import CategoriesPage from './pages/CategoriesPage.jsx';

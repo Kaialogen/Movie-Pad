@@ -1,7 +1,7 @@
 import NavBar from '../components/Navbar/NavBar.jsx';
 import SlideShow from '../components/SlideShow/SlideShow.jsx';
 import ShopGrid from '../components/ShopGrid/ShopGrid.jsx';
-import { Toaster } from '../components/ui/sonner';
+import { Toaster } from '../components/ui/sonner.js';
 
 function HomePage() {
   return (
