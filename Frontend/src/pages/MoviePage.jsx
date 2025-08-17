@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar/NavBar';
 import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
 import { Toaster } from '../components/ui/sonner.js';
+import { toast } from 'sonner';
 
 export default function MoviePage() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export default function MoviePage() {
     if (value >= 1 && value <= 30) {
       setDays(value);
     } else {
-      alert('Please enter a valid number of days (1-30).');
+      toast.error('Please enter a valid number of days (1-30).');
     }
   };
 

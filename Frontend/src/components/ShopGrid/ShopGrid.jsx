@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import MovieCard from '../MovieCard/MovieCard';
+import { toast } from 'sonner';
 
 export default function ShopGrid() {
   const [days, setDays] = useState(3);
@@ -10,7 +11,7 @@ export default function ShopGrid() {
     if (value >= 1 && value <= 30) {
       setDays(value);
     } else {
-      alert('Please enter a valid number of days (1–30).');
+      toast.error('Please enter a valid number of days (1–30).');
     }
   };
   useEffect(() => {
