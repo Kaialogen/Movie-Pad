@@ -11,7 +11,12 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, // Allow cookies to be sent with requests
+  })
+);
 
 // Secret key for JWT
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
