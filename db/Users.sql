@@ -7,4 +7,7 @@ CREATE TABLE IF NOT EXISTS Users (
     email VARCHAR(100) UNIQUE NOT NULL,
     password TEXT NOT NULL);
 
-    
+INSERT INTO Users (username, email, password)
+VALUES ('testuser', 'test@test.com', crypt('testpassword', gen_salt('bf')));
+
+SELECT setval('users_id_seq', (SELECT MAX(id) FROM Users));
