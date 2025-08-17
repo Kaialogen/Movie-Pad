@@ -1,5 +1,6 @@
 import NavBar from '../components/Navbar/NavBar';
 import { FaChevronDown } from 'react-icons/fa';
+import Footer from '../components/Footer/Footer';
 
 export default function HelpPage() {
   const faqs = [
@@ -26,9 +27,9 @@ export default function HelpPage() {
   ];
 
   return (
-    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter'>
+    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter flex flex-col'>
       <NavBar />
-      <main className='max-w-4xl mx-auto px-4 py-20'>
+      <main className='max-w-4xl mx-auto px-4 py-20 flex-grow'>
         <h1 className='text-4xl font-bold text-center mb-12'>Help & FAQ</h1>
 
         <section className='space-y-6'>
@@ -48,6 +49,7 @@ export default function HelpPage() {
           ))}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import NavBar from '../components/Navbar/NavBar';
+import Footer from '../components/Footer/Footer';
 
 export default function CategoriesPage() {
   const categories = [
@@ -17,9 +18,9 @@ export default function CategoriesPage() {
   ];
 
   return (
-    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter'>
+    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter flex flex-col'>
       <NavBar />
-      <section className='pt-24 px-8 max-w-7xl mx-auto'>
+      <section className='pt-24 px-8 max-w-7xl flex-grow'>
         <div className='text-center mb-12'>
           <h1 className='text-4xl font-bold mb-2'>Categories</h1>
           <p className='text-slate-300 text-lg'>Click on a category to view available movies.</p>
@@ -44,6 +45,7 @@ export default function CategoriesPage() {
           ))}
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

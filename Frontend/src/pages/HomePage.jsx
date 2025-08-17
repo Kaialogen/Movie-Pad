@@ -1,6 +1,7 @@
 import NavBar from '../components/Navbar/NavBar.jsx';
 import SlideShow from '../components/SlideShow/SlideShow.jsx';
 import ShopGrid from '../components/ShopGrid/ShopGrid.jsx';
+import Footer from '../components/Footer/Footer.jsx';
 import { Toaster } from '../components/ui/sonner.js';
 
 function HomePage() {
@@ -10,6 +11,7 @@ function HomePage() {
       <NavBar />
       <SlideShow />
       <ShopGrid />
+      <Footer />
     </div>
   );
 }

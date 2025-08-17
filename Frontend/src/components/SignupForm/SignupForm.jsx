@@ -27,7 +27,7 @@ export default function SignupForm() {
     navigate('/');
   }
   return (
-    <div className='absolute w-full p-12'>
+    <div className='flex-grow w-full p-12'>
       <article>
         <h1 className='text-center text-4xl font-bold mb-12 pb-5 pt-10 text-slate-50'>
           Welcome To Endless Entertainment

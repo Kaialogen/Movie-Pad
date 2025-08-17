@@ -1,9 +1,10 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import NavBar from '../components/Navbar/NavBar';
-import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
 import { Toaster } from '../components/ui/sonner.js';
 import { toast } from 'sonner';
+import NavBar from '../components/Navbar/NavBar';
+import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
+import Footer from '../components/Footer/Footer.jsx';
 
 export default function MoviePage() {
   const { id } = useParams();
@@ -49,10 +50,10 @@ export default function MoviePage() {
   }
 
   return (
-    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter'>
+    <div className='bg-slate-900 min-h-screen text-slate-50 font-inter flex flex-col'>
       <Toaster richColors position='top-center' />
       <NavBar />
-      <div className='max-w-6xl mx-auto px-6 py-16'>
+      <div className='max-w-6xl mx-auto px-6 py-16 pt-20 flex-grow'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
           {/* Poster Image */}
           <img
@@ -114,6 +115,7 @@ export default function MoviePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
