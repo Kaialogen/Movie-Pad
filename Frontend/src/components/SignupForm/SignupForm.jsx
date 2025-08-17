@@ -12,7 +12,7 @@ export default function SignupForm() {
     return /^[A-Za-z0-9]+([.-][A-Za-z0-9]+)*@[A-Za-z0-9]+([.-][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/.test(email);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!validateEmail(email)) {
       alert('Please enter a valid email address.');
@@ -23,8 +23,26 @@ export default function SignupForm() {
       return;
     }
 
-    alert('Form submitted');
-    navigate('/');
+    try {
+      const response = await fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password }),
+      });
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        alert('Signup successful! Redirecting...');
+        navigate('/login'); // Redirect to Login page
+      } else {
+        alert(data.message || 'Signup failed.');
+      }
+    } catch (error) {
+      console.error('Error during signup:', error);
+      alert('Something went wrong. Please try again.');
+    }
   }
   return (
     <div className='flex-grow w-full p-12'>
