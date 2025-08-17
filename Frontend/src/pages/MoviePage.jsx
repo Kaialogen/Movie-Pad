@@ -64,7 +64,11 @@ export default function MoviePage() {
           <div className='space-y-6'>
             <iframe
               className='w-full h-64 rounded-xl shadow-lg'
-              src={movie.video}
+              src={
+                movie.video && movie.video.includes('youtube')
+                  ? movie.video.replace('autoplay=1', 'autoplay=0')
+                  : movie.video
+              }
               title={`${movie.name} Trailer`}
               allowFullScreen
             ></iframe>
