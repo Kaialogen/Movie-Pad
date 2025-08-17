@@ -44,7 +44,9 @@ export default function Searchbar() {
 
   return (
     <form
-      className='flex items-center border-2 border-purple-700 rounded-xl h-10 bg-transparent w-full max-w-2xl px-3'
+      className='flex items-center border-2 border-purple-700 rounded-xl h-10 bg-white/5 focus-within:bg-white/10 transition
+ w-full max-w-2xl px-3 focus-within:ring-2 focus-within:ring-purple-500
+'
       method='post'
       onSubmit={handleSubmit}
       role='search'
