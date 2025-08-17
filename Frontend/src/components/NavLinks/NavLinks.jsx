@@ -1,20 +1,42 @@
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { useSelector } from 'react-redux';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 
 export default function NavLinks() {
   const basketCount = useSelector((state) => state.basket.basket.length);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const response = await fetch('http://localhost:3000/api/profile', {
+        method: 'GET',
+        credentials: 'include', // Include cookies in request
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('User:', data.username);
+        setUsername(data.username);
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    };
+    checkLoginStatus();
+  }, []);
 
   return (
     <div className='flex items-center space-x-2'>
       <NavLink
-        to='/login'
+        to={loggedIn ? '/account' : '/login'}
         className={({ isActive }) =>
-          `relative flex items-center justify-center h-16 w-14 text-2xl transition 
+          `relative flex items-center justify-center h-16 px-4 text-sm md:text-base transition 
      ${isActive ? 'text-purple-400 after:absolute after:bottom-0 after:w-full after:h-0.5 after:bg-purple-400' : 'text-white hover:text-purple-300'}`
         }
       >
-        <i className='fa-solid fa-user' />
+        {loggedIn ? <span className='truncate'>{username}</span> : <i className='fa-solid fa-user text-2xl' />}
       </NavLink>
 
       <NavLink

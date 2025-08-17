@@ -31,7 +31,7 @@ app.post("/api/login", async (req, res) => {
 
   try {
     const { rows } = await pool.query(
-      "SELECT email, password FROM Users WHERE email = $1",
+      "SELECT username, email, password FROM Users WHERE email = $1",
       [email]
     );
 
@@ -50,9 +50,10 @@ app.post("/api/login", async (req, res) => {
         .status(401)
         .json({ message: "Invalid credentials - Incorrect password" });
     }
+    const username = user.username;
 
     // Generate JWT token
-    const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
+    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: "1h" });
 
     // Set HttpOnly, Secure Cookie
     res.cookie("authToken", token, {
