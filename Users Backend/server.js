@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
+const rateLimit = require("express-rate-limit");
 const pool = require("./db");
 
 const app = express();
@@ -14,9 +15,15 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true, // Allow cookies to be sent with requests
+    credentials: true,
   })
 );
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, please try again later.",
+});
+app.use(limiter);
 
 // Secret key for JWT
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
