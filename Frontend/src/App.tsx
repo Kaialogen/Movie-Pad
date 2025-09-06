@@ -1,5 +1,3 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
@@ -15,8 +13,8 @@ import CheckoutPage from './pages/CheckoutPage.jsx';
 import Confirmation from './pages/ConfirmationPage.jsx';
 import MoviePage from './pages/MoviePage.jsx';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+export default function App() {
+  return (
     <MoviesProvider>
       <Provider store={store}>
         <BrowserRouter>
@@ -35,5 +33,5 @@ createRoot(document.getElementById('root')).render(
         </BrowserRouter>
       </Provider>
     </MoviesProvider>
-  </StrictMode>,
-);
+  );
+}

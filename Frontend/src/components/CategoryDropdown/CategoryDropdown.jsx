@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
+import { FaBars } from 'react-icons/fa';
 
 const genres = [
   'Action',
@@ -38,10 +39,9 @@ export default function CategoryDropdown() {
         aria-haspopup='true'
         aria-expanded={open}
       >
-        <i className='fa-solid fa-bars' />
+        <FaBars className='text-2xl' />
       </NavLink>
 
-      {/* Fixed panel under the navbar (navbar is h-16), right-aligned to content padding (px-4) */}
       {open && (
         <div
           className='
