@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton';
+import AddToBasketButton from '../components/AddToBasketbutton/AddToBasketButton.tsx';
 
 export default function MoviePage() {
   const { id } = useParams();

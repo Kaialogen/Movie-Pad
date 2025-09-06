@@ -1,7 +1,21 @@
-import AddToBasketButton from '../AddToBasketbutton/AddToBasketButton';
-import MoreInfoButton from '../MoreInfoButton/MoreInfoButton';
+import AddToBasketButton from '../AddToBasketbutton/AddToBasketButton.tsx';
+import MoreInfoButton from '../MoreInfoButton/MoreInfoButton.tsx';
 
-export default function MovieCard({ movie, days, onDaysChange }) {
+type Movie = {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  description: string;
+};
+
+type MovieCardProps = {
+  movie: Movie;
+  days: number;
+  onDaysChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export default function MovieCard({ movie, days, onDaysChange }: MovieCardProps) {
   return (
     <div key={movie.id} className='group relative w-full max-w-[500px] h-[650px] overflow-hidden rounded-xl shadow-lg'>
       <img

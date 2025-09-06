@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { useSelector } from 'react-redux';
 import { FaShoppingBasket, FaQuestion, FaUser } from 'react-icons/fa';
-import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.tsx';
 
 export default function NavLinks() {
-  const basketCount = useSelector((state) => state.basket.basket.length);
+  const basketCount = useSelector((state: any) => state.basket.basket.length);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 

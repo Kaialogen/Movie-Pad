@@ -16,7 +16,7 @@ export default function Confirmation() {
 
   const random4DigitNumber = Math.floor(1000 + Math.random() * 9000);
 
-  const basket = useSelector((state) => state.basket.basket);
+  const basket = useSelector((state: any) => state.basket.basket);
 
   const totalPrice = basket.reduce((sum: number, item: item) => sum + item.price * item.rentDays, 0).toFixed(2);
 

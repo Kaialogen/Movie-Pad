@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { FaBars } from 'react-icons/fa';
 
-const genres = [
+const genres: string[] = [
   'Action',
   'Adventure',
   'Animation',
@@ -23,7 +23,7 @@ export default function CategoryDropdown() {
   // Close on Escape
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    const onKey: (e: KeyboardEvent) => void = (e) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);

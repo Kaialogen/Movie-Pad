@@ -1,4 +1,9 @@
-export const slides = [
+interface Slides {
+  src: string;
+  alt: string;
+}
+
+export const slides: Slides[] = [
   {
     src: 'Banners/Dont-Breath-Banner.jpg',
     alt: 'Dont-Breath-Banner',

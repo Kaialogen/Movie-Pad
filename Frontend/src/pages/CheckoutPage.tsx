@@ -1,5 +1,5 @@
-import BasketWidget from '../components/BasketWidget/BasketWidget';
-import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
+import BasketWidget from '../components/BasketWidget/BasketWidget.tsx';
+import CheckoutForm from '../components/CheckoutForm/CheckoutForm.tsx';
 
 export default function CheckoutPage() {
   return (

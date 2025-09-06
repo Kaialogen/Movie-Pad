@@ -1,30 +1,32 @@
-// components/Basket/Basket.js
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadFromStorage, removeItem, increaseDays, decreaseDays } from '../../store/basketSlice';
+import { loadFromStorage, removeItem, increaseDays, decreaseDays } from '../../store/basketSlice.ts';
 
-import ClearBasketButton from '../ClearBasketButton/ClearBasketButton';
-import CheckoutBasketButton from '../CheckoutBasketButton/CheckoutBasketButton';
+import ClearBasketButton from '../ClearBasketButton/ClearBasketButton.tsx';
+import CheckoutBasketButton from '../CheckoutBasketButton/CheckoutBasketButton.tsx';
+
+interface BasketItem {
+  name: string;
+  price: number;
+  rentDays: number;
+}
 
 export default function Basket() {
   const dispatch = useDispatch();
 
-  const basket = useSelector((state) => state.basket.basket);
-  const save = useSelector((state) => state.basket.save);
+  const basket = useSelector((state: any) => state.basket.basket);
 
   // Load from sessionStorage on mount
   useEffect(() => {
     dispatch(loadFromStorage());
   }, [dispatch]);
 
-  // Save to sessionStorage whenever basket or save changes
   useEffect(() => {
     sessionStorage.setItem('basket', JSON.stringify(basket));
-    sessionStorage.setItem('save', JSON.stringify(save));
-  }, [basket, save]);
+  }, [basket]);
 
-  const handleAddDays = (movieName) => {
-    const item = basket.find((item) => item.name === movieName);
+  const handleAddDays = (movieName: string) => {
+    const item = basket.find((item: BasketItem) => item.name === movieName);
     if (item?.rentDays >= 30) {
       alert('Sorry you cannot rent a movie longer than 30 days.');
       return;
@@ -32,15 +34,15 @@ export default function Basket() {
     dispatch(increaseDays(movieName));
   };
 
-  const handleSubDays = (movieName) => {
+  const handleSubDays = (movieName: string) => {
     dispatch(decreaseDays(movieName));
   };
 
-  const handleRemoveMovie = (movieName) => {
+  const handleRemoveMovie = (movieName: string) => {
     dispatch(removeItem(movieName));
   };
 
-  const totalPrice = basket.reduce((acc, item) => acc + item.price * item.rentDays, 0);
+  const totalPrice = basket.reduce((acc: number, item: BasketItem) => acc + item.price * item.rentDays, 0);
 
   return (
     <section className='flex-grow w-full p-12'>
@@ -55,7 +57,7 @@ export default function Basket() {
             </tr>
           </thead>
           <tbody className='text-slate-900 text-left'>
-            {basket.map((item) => (
+            {basket.map((item: BasketItem) => (
               <tr key={item.name}>
                 <td>
                   <button onClick={() => handleRemoveMovie(item.name)} className='text-red-600'>

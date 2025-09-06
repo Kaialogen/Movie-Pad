@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Provider } from 'react-redux';
-import store from './store/store.js';
-import { MoviesProvider } from './context/MoviesContext.jsx';
+import store from './store/store.ts';
+import { MoviesProvider } from './context/MoviesContext.tsx';
 import MainLayout from './MainLayout.tsx';
 
 import HomePage from './pages/HomePage.tsx';

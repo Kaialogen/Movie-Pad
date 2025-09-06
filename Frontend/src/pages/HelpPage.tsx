@@ -1,7 +1,12 @@
 import { FaChevronDown } from 'react-icons/fa';
 
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 export default function HelpPage() {
-  const faqs = [
+  const faqs: FAQ[] = [
     {
       question: 'How do I create an account?',
       answer: "An account can be opened through the login portal, by selecting 'Don't have an account'.",

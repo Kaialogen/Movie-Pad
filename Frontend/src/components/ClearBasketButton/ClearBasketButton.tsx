@@ -1,6 +1,5 @@
-// components/ClearBasketButton/ClearBasketButton.js
 import { useDispatch } from 'react-redux';
-import { clearBasket } from '../../store/basketSlice';
+import { clearBasket } from '../../store/basketSlice.ts';
 
 export default function ClearBasketButton() {
   const dispatch = useDispatch();

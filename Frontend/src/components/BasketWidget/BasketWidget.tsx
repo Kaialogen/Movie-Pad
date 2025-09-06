@@ -1,9 +1,16 @@
 import { useSelector } from 'react-redux';
 import { FaShoppingCart } from 'react-icons/fa';
 
+interface BasketItem {
+  id: number;
+  name: string;
+  price: number;
+  rentDays: number;
+}
+
 export default function BasketWidget() {
-  const basket = useSelector((state) => state.basket.basket);
-  const totalPrice = basket.reduce((sum, item) => sum + item.price * item.rentDays, 0).toFixed(2);
+  const basket = useSelector((state: any) => state.basket.basket);
+  const totalPrice = basket.reduce((sum: number, item: BasketItem) => sum + item.price * item.rentDays, 0).toFixed(2);
 
   return (
     <aside className='w-9/12'>
@@ -26,7 +33,7 @@ export default function BasketWidget() {
               </tr>
             </thead>
             <tbody>
-              {basket.map((item) => (
+              {basket.map((item: BasketItem) => (
                 <tr key={item.id} className='hover:bg-slate-100 transition'>
                   <td className='py-2'>{item.name}</td>
                   <td className='py-2'>{item.rentDays}</td>

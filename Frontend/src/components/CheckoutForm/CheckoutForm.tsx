@@ -20,7 +20,7 @@ export default function CheckoutForm() {
   const [expYear, setExpYear] = useState('');
   const [cvv, setCVV] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     navigate('/order-confirmation');
   };
