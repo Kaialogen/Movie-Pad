@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../store/basketSlice';
-import { useMovies } from '../../context/MoviesContext';
+import { addItem } from '../../store/basketSlice.ts';
+import { useMovies } from '../../context/MoviesContext.tsx';
 import { toast } from 'sonner';
 
-export default function AddToBasketButton({ movieId, days }) {
+type AddToBasketButtonProps = {
+  movieId: number;
+  days: number;
+};
+
+export default function AddToBasketButton({ movieId, days }: AddToBasketButtonProps) {
   const dispatch = useDispatch();
   const basket = useSelector((state) => state.basket.basket);
   const { movies } = useMovies();
 
-  function addToBasket(movieId, daysRent) {
+  function addToBasket(movieId: number, daysRent: number) {
     const movie = movies.find((m) => String(m.id) === String(movieId));
 
     if (!movie) {

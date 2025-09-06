@@ -1,16 +1,9 @@
-import Searchbar from '../Searchbar/Searchbar';
-import HomeButton from '../HomeButton/HomeButton';
-import NavLinks from '../NavLinks/NavLinks';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { loadFromStorage } from '../../store/basketSlice';
+import Searchbar from '../Searchbar/Searchbar.tsx';
+import HomeButton from '../HomeButton/HomeButton.tsx';
+import NavLinks from '../NavLinks/NavLinks.tsx';
+import { FaBars } from 'react-icons/fa';
 
 export default function NavBar() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadFromStorage());
-  }, [dispatch]);
   return (
     <div
       className='fixed top-0 w-full z-10 bg-slate-900/80 backdrop-blur-md border-b border-white/10
@@ -29,12 +22,11 @@ export default function NavBar() {
           <div className='hidden sm:flex'>
             <NavLinks />
           </div>
+          {
+            // menu for small screens
+          }
           <div className='sm:hidden'>
-            <button className='text-white focus:outline-none' aria-label='Open menu'>
-              <svg width='28' height='28' fill='none' viewBox='0 0 24 24'>
-                <path stroke='currentColor' strokeWidth='2' strokeLinecap='round' d='M4 6h16M4 12h16M4 18h16' />
-              </svg>
-            </button>
+            <FaBars className='text-white text-2xl cursor-pointer' />
           </div>
         </div>
       </nav>

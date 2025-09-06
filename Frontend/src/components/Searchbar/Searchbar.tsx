@@ -2,16 +2,19 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function Searchbar() {
-  // State to manage input text
   const [inputText, setInputText] = useState('');
   const navigate = useNavigate();
 
   // Function to handle form submission
-  const handleSubmit = (event) => {
+  interface MovieMap {
+    [keyword: string]: number;
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent the default form submission
 
     // Use an object to map movie keywords to their IDs
-    const movieMap = {
+    const movieMap: MovieMap = {
       paw: 2,
       patrol: 2,
       demon: 7,
@@ -34,7 +37,7 @@ export default function Searchbar() {
     };
 
     // Check if the input matches any keywords
-    const id = movieMap[inputText];
+    const id: number | undefined = movieMap[inputText];
     if (id) {
       navigate(`/movie/${id}`);
     } else {

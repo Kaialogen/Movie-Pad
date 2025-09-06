@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import basketReducer from './basketSlice';
-import { basketPersistenceMiddleware } from './persistenceMiddleware';
+import basketReducer from './basketSlice.ts';
+import { basketPersistenceMiddleware } from './persistenceMiddleware.ts';
 
 const store = configureStore({
   reducer: {

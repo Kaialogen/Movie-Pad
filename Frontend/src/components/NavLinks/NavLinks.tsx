@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { useSelector } from 'react-redux';
-import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import { FaShoppingBasket, FaQuestion, FaUser } from 'react-icons/fa';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.tsx';
 
 export default function NavLinks() {
-  const basketCount = useSelector((state) => state.basket.basket.length);
+  const basketCount = useSelector((state: any) => state.basket.basket.length);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 
@@ -36,7 +37,7 @@ export default function NavLinks() {
      ${isActive ? 'text-purple-400 after:absolute after:bottom-0 after:w-full after:h-0.5 after:bg-purple-400' : 'text-white hover:text-purple-300'}`
         }
       >
-        {loggedIn ? <span className='truncate'>{username}</span> : <i className='fa-solid fa-user text-2xl' />}
+        {loggedIn ? <span className='truncate'>{username}</span> : <FaUser className='text-2xl' />}
       </NavLink>
 
       <NavLink
@@ -47,9 +48,8 @@ export default function NavLinks() {
         }
         aria-label='Help'
       >
-        <i className='fa-solid fa-question' />
+        <FaQuestion className='text-2xl' />
       </NavLink>
-
       <CategoryDropdown />
 
       <NavLink
@@ -57,7 +57,7 @@ export default function NavLinks() {
         className='relative flex items-center justify-center h-16 w-14 bg-purple-700 text-white text-2xl hover:bg-purple-600 transition'
         aria-label='Basket'
       >
-        <i className='fa-solid fa-shopping-basket' />
+        <FaShoppingBasket className='text-2xl' />
         {basketCount > 0 && (
           <span className='absolute top-1 right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1'>
             {basketCount}

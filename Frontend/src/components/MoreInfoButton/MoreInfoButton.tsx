@@ -1,6 +1,10 @@
 import { Link } from 'react-router';
 
-export default function MoreInfoButton({ movieId }) {
+type MoreInfoButtonProps = {
+  movieId: string | number;
+};
+
+export default function MoreInfoButton({ movieId }: MoreInfoButtonProps) {
   return (
     <Link
       to={`/movie/${movieId}`}
