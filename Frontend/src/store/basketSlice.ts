@@ -12,27 +12,36 @@ const basketSlice = createSlice({
       state.basket = JSON.parse(sessionStorage.getItem('basket') ?? '[]');
     },
     addItem(state, action) {
-      state.basket.push(action.payload);
-    },
-    removeItem(state, action) {
-      const index = state.basket.findIndex((item) => item.name === action.payload);
-      if (index !== -1) {
-        state.basket.splice(index, 1);
+      const existing = state.basket.find((item) => item.id === action.payload.id);
+
+      if (existing) {
+        // Increment but clamp to 30
+        existing.rentDays = Math.min(existing.rentDays + action.payload.rentDays, 30);
+      } else {
+        // Always clamp on new adds too
+        state.basket.push({
+          ...action.payload,
+          rentDays: Math.min(action.payload.rentDays, 30),
+        });
       }
     },
+    removeItem(state, action) {
+      state.basket = state.basket.filter((item) => item.id !== action.payload);
+    },
     increaseDays(state, action) {
-      const index = state.basket.findIndex((item) => item.name === action.payload);
-      if (index !== -1 && state.basket[index].rentDays < 30) {
-        state.basket[index].rentDays += 1;
+      const existing = state.basket.find((item) => item.id === action.payload);
+      if (existing && existing.rentDays < 30) {
+        existing.rentDays += 1;
       }
     },
     decreaseDays(state, action) {
-      const index = state.basket.findIndex((item) => item.name === action.payload);
-      if (index !== -1) {
-        if (state.basket[index].rentDays > 1) {
-          state.basket[index].rentDays -= 1;
+      const existing = state.basket.find((item) => item.id === action.payload);
+      if (existing) {
+        if (existing.rentDays > 1) {
+          existing.rentDays -= 1;
         } else {
-          state.basket.splice(index, 1);
+          // remove if rentDays would go below 1
+          state.basket = state.basket.filter((item) => item.id !== action.payload);
         }
       }
     },

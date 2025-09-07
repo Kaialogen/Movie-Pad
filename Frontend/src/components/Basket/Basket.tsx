@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadFromStorage, removeItem, increaseDays, decreaseDays } from '../../store/basketSlice.ts';
+import { removeItem, increaseDays, decreaseDays } from '../../store/basketSlice.ts';
 
 import ClearBasketButton from '../ClearBasketButton/ClearBasketButton.tsx';
 import CheckoutBasketButton from '../CheckoutBasketButton/CheckoutBasketButton.tsx';
 
 interface BasketItem {
+  id: number;
   name: string;
   price: number;
   rentDays: number;
@@ -13,33 +13,22 @@ interface BasketItem {
 
 export default function Basket() {
   const dispatch = useDispatch();
-
   const basket = useSelector((state: any) => state.basket.basket);
 
-  // Load from sessionStorage on mount
-  useEffect(() => {
-    dispatch(loadFromStorage());
-  }, [dispatch]);
-
-  useEffect(() => {
-    sessionStorage.setItem('basket', JSON.stringify(basket));
-  }, [basket]);
-
-  const handleAddDays = (movieName: string) => {
-    const item = basket.find((item: BasketItem) => item.name === movieName);
-    if (item?.rentDays >= 30) {
+  const handleAddDays = (movieId: number, currentDays: number) => {
+    if (currentDays >= 30) {
       alert('Sorry you cannot rent a movie longer than 30 days.');
       return;
     }
-    dispatch(increaseDays(movieName));
+    dispatch(increaseDays(movieId));
   };
 
-  const handleSubDays = (movieName: string) => {
-    dispatch(decreaseDays(movieName));
+  const handleSubDays = (movieId: number) => {
+    dispatch(decreaseDays(movieId));
   };
 
-  const handleRemoveMovie = (movieName: string) => {
-    dispatch(removeItem(movieName));
+  const handleRemoveMovie = (movieId: number) => {
+    dispatch(removeItem(movieId));
   };
 
   const totalPrice = basket.reduce((acc: number, item: BasketItem) => acc + item.price * item.rentDays, 0);
@@ -58,19 +47,19 @@ export default function Basket() {
           </thead>
           <tbody className='text-slate-900 text-left'>
             {basket.map((item: BasketItem) => (
-              <tr key={item.name}>
+              <tr key={item.id}>
                 <td>
-                  <button onClick={() => handleRemoveMovie(item.name)} className='text-red-600'>
+                  <button onClick={() => handleRemoveMovie(item.id)} className='text-red-600'>
                     x
                   </button>{' '}
                   {item.name}
                 </td>
                 <td>
-                  <button onClick={() => handleSubDays(item.name)} className='hover:cursor-pointer'>
+                  <button onClick={() => handleSubDays(item.id)} className='hover:cursor-pointer'>
                     -
                   </button>{' '}
                   {item.rentDays}{' '}
-                  <button onClick={() => handleAddDays(item.name)} className='hover:cursor-pointer'>
+                  <button onClick={() => handleAddDays(item.id, item.rentDays)} className='hover:cursor-pointer'>
                     +
                   </button>
                 </td>

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/basketSlice.ts';
 import { useMovies } from '../../context/MoviesContext.tsx';
 import { toast } from 'sonner';
@@ -10,11 +10,10 @@ type AddToBasketButtonProps = {
 
 export default function AddToBasketButton({ movieId, days }: AddToBasketButtonProps) {
   const dispatch = useDispatch();
-  const basket = useSelector((state) => state.basket.basket);
   const { movies } = useMovies();
 
   function addToBasket(movieId: number, daysRent: number) {
-    const movie = movies.find((m) => String(m.id) === String(movieId));
+    const movie = movies.find((m) => m.id === movieId);
 
     if (!movie) {
       toast.error('Movie not found.');
@@ -29,22 +28,9 @@ export default function AddToBasketButton({ movieId, days }: AddToBasketButtonPr
       toast.warning('Max rental is 30 days. Adjusted to 30.');
     }
 
-    const existing = basket.find((item) => item.id === movie.id);
+    dispatch(addItem({ id: movie.id, name: movie.name, price: movie.price, rentDays: rentalDays }));
 
-    if (existing) {
-      const currentDays = existing.rentDays;
-      const totalDays = Math.min(currentDays + rentalDays, 30);
-
-      if (totalDays === 30 && currentDays + rentalDays > 30) {
-        toast.error("You can't rent more than 30 days total. Set to 30 days.");
-      }
-
-      dispatch(addItem({ ...movie, rentDays: totalDays }));
-      toast.success(`${movie.name} updated. Total rent: ${totalDays} days.`);
-    } else {
-      dispatch(addItem({ ...movie, rentDays: rentalDays }));
-      toast.success(`${movie.name} added for ${rentalDays} days.`);
-    }
+    toast.success(`${movie.name} added for ${rentalDays} days.`);
   }
 
   return (
