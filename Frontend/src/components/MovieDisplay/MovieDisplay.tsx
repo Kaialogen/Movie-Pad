@@ -2,10 +2,24 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import AddToBasketButton from '../AddToBasketbutton/AddToBasketButton.tsx';
+import HomepageButton from '../HomepageButton/HomepageButton.tsx';
 
 export default function MovieDisplay() {
   const id = useParams();
-  const [movie, setMovie] = useState([]);
+  type Movie = {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    video: string;
+    releaseDate: string;
+    genre: string;
+    director: string;
+    actors: string;
+    price: number;
+  };
+
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [days, setDays] = useState(3);
 
   // Function to handle changes in the number of days input
@@ -42,14 +56,16 @@ export default function MovieDisplay() {
   if (!movie) {
     return (
       <>
-        <div className='' style={{ padding: '2rem' }}>
-          Movie not found.
+        <div className='text-center text-2xl text-slate-50 mt-20'>Oops something went wrong</div>
+        <div className='text-center text-xl text-slate-50'>Please return to the homepage</div>
+        <div className='flex justify-center mt-6'>
+          <HomepageButton />
         </div>
       </>
     );
   }
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
+    <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-slate-50'>
       {/* Poster Image */}
       <img
         src={movie.image}
@@ -61,11 +77,7 @@ export default function MovieDisplay() {
       <div className='space-y-6'>
         <iframe
           className='w-full h-64 rounded-xl shadow-lg'
-          src={
-            movie.video && movie.video.includes('youtube')
-              ? movie.video.replace('autoplay=1', 'autoplay=0')
-              : movie.video
-          }
+          src={movie.video}
           title={`${movie.name} Trailer`}
           allowFullScreen
         ></iframe>
