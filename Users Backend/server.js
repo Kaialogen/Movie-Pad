@@ -207,6 +207,53 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
+// Update Username Endpoint
+app.put("/api/user/update-username", async (req, res) => {
+  const token = req.cookies.authToken;
+  if (!token) return res.status(401).json({ message: "Not authenticated" });
+
+  const { newUsername } = req.body;
+  if (!newUsername) {
+    return res.status(400).json({ message: "New username is required" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const currentUsername = decoded.username;
+
+    // Update username in the database
+    await pool.query("UPDATE Users SET username = $1 WHERE username = $2", [
+      newUsername,
+      currentUsername,
+    ]);
+
+    // Destroy the old token
+    res.clearCookie("authToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "Strict",
+    });
+
+    // Generate a new token with the updated username
+    const newToken = jwt.sign({ username: newUsername }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    // Set the new token in the cookie
+    res.cookie("authToken", newToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "Strict",
+      maxAge: 3600000,
+    });
+
+    res.status(200).json({ message: "Username updated successfully" });
+  } catch (err) {
+    console.error("Update username error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
