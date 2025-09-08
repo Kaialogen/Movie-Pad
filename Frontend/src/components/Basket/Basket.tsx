@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, increaseDays, decreaseDays } from '../../store/basketSlice.ts';
+import { toast } from 'sonner';
 
 import ClearBasketButton from '../ClearBasketButton/ClearBasketButton.tsx';
 import CheckoutBasketButton from '../CheckoutBasketButton/CheckoutBasketButton.tsx';
@@ -17,7 +18,7 @@ export default function Basket() {
 
   const handleAddDays = (movieId: number, currentDays: number) => {
     if (currentDays >= 30) {
-      alert('Sorry you cannot rent a movie longer than 30 days.');
+      toast.error('Sorry you cannot rent a movie longer than 30 days.');
       return;
     }
     dispatch(increaseDays(movieId));

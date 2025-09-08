@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 export default function Searchbar() {
   const [inputText, setInputText] = useState('');
@@ -41,7 +42,7 @@ export default function Searchbar() {
     if (id) {
       navigate(`/movie/${id}`);
     } else {
-      alert("We couldn't identify that movie in our catalogue");
+      toast.error("We couldn't identify that movie in our catalogue");
     }
   };
 

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function SignupForm() {
   const navigate = useNavigate();
@@ -15,11 +16,11 @@ export default function SignupForm() {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (!validateEmail(email)) {
-      alert('Please enter a valid email address.');
+      toast.error('Please enter a valid email address.');
       return;
     }
     if (password !== confirmPassword) {
-      alert('Passwords do not match.');
+      toast.error('Passwords do not match.');
       return;
     }
 
@@ -34,14 +35,14 @@ export default function SignupForm() {
       console.log(data);
 
       if (response.ok) {
-        alert('Signup successful! Redirecting...');
+        toast.success('Signup successful! Redirecting...');
         navigate('/login'); // Redirect to Login page
       } else {
-        alert(data.message || 'Signup failed.');
+        toast.error(data.message || 'Signup failed.');
       }
     } catch (error) {
       console.error('Error during signup:', error);
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   }
   return (

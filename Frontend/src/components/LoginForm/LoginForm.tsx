@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function LoginForm({ Route }: { Route: string }) {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function LoginForm({ Route }: { Route: string }) {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (!validateEmail(email)) {
-      alert('Please enter a valid email address.');
+      toast.error('Please enter a valid email address.');
       return;
     }
 
@@ -28,14 +29,14 @@ export default function LoginForm({ Route }: { Route: string }) {
       console.log(data);
 
       if (response.ok) {
-        alert('Login successful! Redirecting...');
+        toast.success('Login successful! Redirecting...');
         navigate(Route);
       } else {
-        alert(data.message || 'Login failed.');
+        toast.error(data.message || 'Login failed.');
       }
     } catch (error) {
       console.error('Error during login:', error);
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   }
 
@@ -47,14 +48,14 @@ export default function LoginForm({ Route }: { Route: string }) {
       });
 
       if (response.ok) {
-        alert('Logged out successfully.');
+        toast.success('Logged out successfully.');
         navigate('/login');
       } else {
-        alert('Logout failed.');
+        toast.error('Logout failed.');
       }
     } catch (error) {
       console.error('Error during logout:', error);
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
