@@ -305,6 +305,32 @@ app.put("/api/user/update-password", async (req, res) => {
   }
 });
 
+// Delete Account Endpoint
+app.delete("/api/user/delete-account", async (req, res) => {
+  const token = req.cookies.authToken;
+  if (!token) return res.status(401).json({ message: "Not authenticated" });
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const username = decoded.username;
+
+    // Delete user from the database
+    await pool.query("DELETE FROM Users WHERE username = $1", [username]);
+
+    // Clear the authentication cookie
+    res.clearCookie("authToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "Strict",
+    });
+
+    res.status(200).json({ message: "Account deleted successfully" });
+  } catch (err) {
+    console.error("Delete account error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
