@@ -15,6 +15,7 @@ import BasketPage from './pages/BasketPage.tsx';
 import CheckoutPage from './pages/CheckoutPage.tsx';
 import Confirmation from './pages/ConfirmationPage.tsx';
 import MoviePage from './pages/MoviePage.tsx';
+import AccountPage from './pages/AccountPage.tsx';
 
 function StoreInitialiser({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ export default function App() {
                 <Route path='/checkout' element={<CheckoutPage />} />
                 <Route path='/order-confirmation' element={<Confirmation />} />
                 <Route path='/movie/:id' element={<MoviePage />} />
+                <Route path='/account' element={<AccountPage />} />
                 <Route path='*' element={<HomePage />} />
               </Route>
             </Routes>
