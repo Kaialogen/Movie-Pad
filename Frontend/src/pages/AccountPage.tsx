@@ -1,3 +1,5 @@
+import SignoutButton from '../components/SignoutButton/SignoutButton.tsx';
+
 export default function AccountPage() {
   return (
     <main className='flex-grow m-auto w-auto p-20'>
@@ -7,7 +9,7 @@ export default function AccountPage() {
           <h2 className='text-2xl font-bold mb-6 text-slate-50'>Account Menu</h2>
           <p className='text-slate-200'>Order History</p>
           <p className='text-slate-200'>Account Settings</p>
-          <p className='text-slate-200'>Logout</p>
+          <SignoutButton />
         </div>
         <div className='lg:col-span-2 bg-slate-100 p-6 rounded-lg'>
           <h2 className='text-2xl font-bold mb-6 text-slate-900'>Order History</h2>

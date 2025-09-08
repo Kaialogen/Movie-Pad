@@ -40,25 +40,6 @@ export default function LoginForm({ Route }: { Route: string }) {
     }
   }
 
-  const signOut = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
-
-      if (response.ok) {
-        toast.success('Logged out successfully.');
-        navigate('/login');
-      } else {
-        toast.error('Logout failed.');
-      }
-    } catch (error) {
-      console.error('Error during logout:', error);
-      toast.error('Something went wrong. Please try again.');
-    }
-  };
-
   return (
     <div className='bg-slate-100 w-1/2 mx-auto p-8 rounded-3xl space-y-8'>
       <h2 className='text-center text-2xl pb-5 pt-4 text-slate-900'>Log In</h2>
@@ -107,12 +88,6 @@ export default function LoginForm({ Route }: { Route: string }) {
           </Link>
         </div>
       </form>
-      <button
-        className='bg-purple-700 text-slate-50 font-inter rounded-[8px] px-4 py-2 hover:bg-purple-500 w-1/4 mt-2 justify-center mx-auto block cursor-pointer'
-        onClick={signOut}
-      >
-        Sign Out
-      </button>
     </div>
   );
 }
