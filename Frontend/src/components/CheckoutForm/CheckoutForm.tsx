@@ -1,27 +1,106 @@
-import { FaUser, FaEnvelope, FaAddressCard, FaCcVisa, FaCcAmex, FaCcMastercard, FaCcDiscover } from 'react-icons/fa';
+import { FaUser, FaAddressCard, FaCcVisa, FaCcAmex, FaCcMastercard, FaCcDiscover } from 'react-icons/fa';
 import { BiSolidInstitution } from 'react-icons/bi';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import {
+  validateFirstName,
+  validateLastName,
+  validatePostcode,
+  validateCardName,
+  validateCardNumber,
+  validateExpiry,
+  validateCVV,
+} from './CheckoutValidation';
+import { toast } from 'sonner';
 
 export default function CheckoutForm() {
   const navigate = useNavigate();
+  const basket = useSelector((state: any) => state.basket.basket);
 
-  // State
+  const MovieId = basket.map((item: { id: number }) => item.id);
+  const totalPrice = basket
+    .reduce((sum: number, item: { price: number; rentDays: number }) => sum + item.price * item.rentDays, 0)
+    .toFixed(2);
+  const RentDays = basket.map((item: { rentDays: number }) => item.rentDays);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
-  const [county, setCounty] = useState('');
+  const [country, setCountry] = useState('');
   const [postcode, setPostcode] = useState('');
   const [cardName, setCardName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
-  const [expMonth, setExpMonth] = useState('');
-  const [expYear, setExpYear] = useState('');
+  const [cardExp, setCardExp] = useState('');
   const [cvv, setCVV] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateFirstName(firstName)) {
+      toast.error('Please enter a valid first name (at least 2 alphabetic characters).');
+      return;
+    }
+    if (!validateLastName(lastName)) {
+      toast.error('Please enter a valid last name (at least 2 alphabetic characters).');
+      return;
+    }
+    if (!validatePostcode(postcode)) {
+      toast.error('Please enter a valid postcode (3-10 alphanumeric characters).');
+      return;
+    }
+    if (!validateCardName(cardName)) {
+      toast.error('Please enter a valid name on card (at least 2 alphabetic characters).');
+      return;
+    }
+    if (!validateCardNumber(cardNumber)) {
+      toast.error('Please enter a valid card number (13-19 digits).');
+      return;
+    }
+    if (!validateExpiry(cardExp)) {
+      toast.error('Please enter a valid card expiry date (MM/YY) that is not expired.');
+      return;
+    }
+    if (!validateCVV(cvv)) {
+      toast.error('Please enter a valid CVV (3 or 4 digits).');
+      return;
+    }
+
+    // If all validations pass
+    try {
+      const response = await fetch('http://localhost:3000/api/orders', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          MovieId,
+          RentDays,
+          totalPrice,
+          firstName,
+          lastName,
+          address,
+          city,
+          country,
+          postcode,
+          cardName,
+          cardNumber,
+          cardExp,
+          cvv,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'Order placement failed.');
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      toast.error(error.message || 'Something went wrong. Please try again.');
+      return;
+    }
+
+    toast.success('Order placed successfully!');
     navigate('/order-confirmation');
   };
 
@@ -70,22 +149,6 @@ export default function CheckoutForm() {
             </div>
 
             <div>
-              <label htmlFor='email' className={labelClass}>
-                <FaEnvelope /> Email
-              </label>
-              <input
-                type='email'
-                id='email'
-                name='email'
-                placeholder='john@example.com'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={inputClass}
-                required
-              />
-            </div>
-
-            <div>
               <label htmlFor='adr' className={labelClass}>
                 <FaAddressCard /> Address
               </label>
@@ -118,16 +181,16 @@ export default function CheckoutForm() {
             </div>
 
             <div>
-              <label htmlFor='county' className={labelClass}>
-                County
+              <label htmlFor='country' className={labelClass}>
+                Country
               </label>
               <input
                 type='text'
-                id='county'
-                name='county'
-                placeholder='West Midlands'
-                value={county}
-                onChange={(e) => setCounty(e.target.value)}
+                id='country'
+                name='country'
+                placeholder='United Kingdom'
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
                 className={inputClass}
                 required
               />
@@ -197,32 +260,16 @@ export default function CheckoutForm() {
             </div>
 
             <div>
-              <label htmlFor='expmonth' className={labelClass}>
-                Expiration Month
+              <label htmlFor='CardExp' className={labelClass}>
+                Card Expiry
               </label>
               <input
                 type='text'
-                id='expmonth'
-                name='expmonth'
-                placeholder='September'
-                value={expMonth}
-                onChange={(e) => setExpMonth(e.target.value)}
-                className={inputClass}
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor='expyear' className={labelClass}>
-                Expiration Year
-              </label>
-              <input
-                type='text'
-                id='expyear'
-                name='expyear'
-                placeholder='2025'
-                value={expYear}
-                onChange={(e) => setExpYear(e.target.value)}
+                id='CardExp'
+                name='CardExp'
+                placeholder='08/27'
+                value={cardExp}
+                onChange={(e) => setCardExp(e.target.value)}
                 className={inputClass}
                 required
               />
