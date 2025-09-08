@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 export default function CheckoutBasketButton() {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ export default function CheckoutBasketButton() {
   const proceedToCheckout = () => {
     const basket = JSON.parse(sessionStorage.getItem('basket') ?? '[]');
     if (basket.length === 0) {
-      alert('Basket is empty');
+      toast.error('Basket is empty');
     } else {
       navigate('/checkout');
     }

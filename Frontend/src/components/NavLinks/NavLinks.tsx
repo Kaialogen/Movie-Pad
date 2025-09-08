@@ -13,12 +13,11 @@ export default function NavLinks() {
     const checkLoginStatus = async () => {
       const response = await fetch('http://localhost:3000/api/profile', {
         method: 'GET',
-        credentials: 'include', // Include cookies in request
+        credentials: 'include',
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('User:', data.username);
         setUsername(data.username);
         setLoggedIn(true);
       } else {
