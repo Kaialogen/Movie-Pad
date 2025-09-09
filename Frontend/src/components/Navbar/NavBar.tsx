@@ -1,7 +1,7 @@
 import Searchbar from '../Searchbar/Searchbar.tsx';
 import HomeButton from '../HomeButton/HomeButton.tsx';
 import NavLinks from '../NavLinks/NavLinks.tsx';
-import { FaBars } from 'react-icons/fa';
+import { Menu } from 'lucide-react';
 
 export default function NavBar() {
   return (
@@ -26,7 +26,7 @@ export default function NavBar() {
             // menu for small screens
           }
           <div className='sm:hidden'>
-            <FaBars className='text-white text-2xl cursor-pointer' />
+            <Menu className='text-white text-2xl cursor-pointer' />
           </div>
         </div>
       </nav>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
-import { FaBars } from 'react-icons/fa';
+import { Menu } from 'lucide-react';
 
 const genres: string[] = [
   'Action',
@@ -39,7 +39,7 @@ export default function CategoryDropdown() {
         aria-haspopup='true'
         aria-expanded={open}
       >
-        <FaBars className='text-2xl' />
+        <Menu className='text-2xl' />
       </NavLink>
 
       {open && (

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { FaShoppingCart } from 'react-icons/fa';
+import { ShoppingCart } from 'lucide-react';
 
 interface BasketItem {
   id: number;
@@ -18,7 +18,7 @@ export default function BasketWidget() {
         <h4 className='text-lg font-semibold flex items-center justify-between border-b pb-3 mb-4'>
           <span className='text-2xl font-semibold mb-4 text-purple-700'>Cart</span>
           <span className='flex items-center gap-2 text-purple-700'>
-            <FaShoppingCart className='text-xl' />
+            <ShoppingCart className='text-xl' />
             <b>{basket.length}</b>
           </span>
         </h4>

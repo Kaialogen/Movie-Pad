@@ -1,4 +1,4 @@
-import { FaChevronDown } from 'react-icons/fa';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQ {
   question: string;
@@ -41,7 +41,7 @@ export default function HelpPage() {
           >
             <summary className='flex items-center justify-between cursor-pointer px-5 py-4 text-lg font-semibold text-white transition-all group-open:bg-purple-800'>
               {faq.question}
-              <FaChevronDown className='transition-transform duration-300 group-open:rotate-180' />
+              <ChevronDown className='transition-transform duration-300 group-open:rotate-180' />
             </summary>
             <div className='px-5 pb-4 text-white text-sm leading-relaxed'>
               <em>{faq.answer}</em>
