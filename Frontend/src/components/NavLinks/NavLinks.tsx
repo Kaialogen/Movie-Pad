@@ -11,7 +11,7 @@ export default function NavLinks() {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const response = await fetch('http://localhost:3000/api/profile', {
+      const response = await fetch('http://localhost:3000/api/auth/profile', {
         method: 'GET',
         credentials: 'include',
       });
