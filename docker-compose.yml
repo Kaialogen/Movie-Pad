@@ -23,16 +23,16 @@ services:
       - "8000:8000"
     depends_on:
       - mongo-db
-  users-backend:
+  MoviePad-backend:
     image: postgres:17-alpine
-    container_name: MoviePad-Users
+    container_name: MoviePad-Backend
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: moviepad-users
+      POSTGRES_DB: moviepad-db
     volumes:
       - moviepad_data:/var/lib/postgresql/data
-      - ./db/Users.sql:/docker-entrypoint-initdb.d/Users.sql
+      - ./db/MoviePad-Data.sql:/docker-entrypoint-initdb.d/MoviePad-Data.sql
     ports:
       - "5432:5432"
 
