@@ -1,31 +1,23 @@
 services:
-  mongo-db:
-    image: mongo:latest
-    container_name: Movies-db
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./mongo-init:/docker-entrypoint-initdb.d:ro
   frontend:
     build:
-      dockerfile: /Frontend/Dockerfile
+      dockerfile: ./Frontend/Dockerfile
     container_name: MoviePad-frontend
+    ports:
+      - "8080:8080"
+  
+  backend:
+    build:
+      dockerfile: ./Backend/Dockerfile
+    container_name: MoviePad-backend
     ports:
       - "3000:3000"
     depends_on:
-      - mongo-db
-  movies-backend:
-    build:
-      context: ./Movies Backend
-      dockerfile: Dockerfile
-    container_name: Movies-backend
-    ports:
-      - "8000:8000"
-    depends_on:
-      - mongo-db
-  MoviePad-backend:
+      - MoviePad-db
+
+  MoviePad-db:
     image: postgres:17-alpine
-    container_name: MoviePad-Backend
+    container_name: MoviePad-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

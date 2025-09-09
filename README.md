@@ -17,18 +17,14 @@ rental process.
 
 ## Backend design
 
-The backend is design using microservices architecture, with a separate service for the movies and another for the
-users. The movies service is designed using FastAPI, which allows for quick and efficient development of RESTful APIs.
-The users service is designed using Node.js and Express, which provides a simple and flexible way to handle user
-authentication and management. The backend uses MongoDB as the database for movie data. The database of choice for user
+The backend is design using a monolithic express application. The database of choice for user
 data is PostgreSQL, which provides a robust and reliable way to store user information.
 
 ## Tech Stack
 
 - frontend: HTML, React, TailwindCSS, react-router, redux, Shadcn UI, Sonner
-- backend: Node.js, Express, FastAPI
+- backend: Node.js, Express
 - user database: PostgreSQL
-- movie database: MongoDB
 - authentication: JWT
 - deployment: Docker, Docker Compose
 
