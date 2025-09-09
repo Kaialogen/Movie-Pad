@@ -8,6 +8,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const movieRoutes = require("./routes/movieRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,6 +34,7 @@ app.use(limiter);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api", movieRoutes);
 
 // Start server
 app.listen(PORT, () => {

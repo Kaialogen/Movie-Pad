@@ -28,9 +28,9 @@ export default function AddToBasketButton({ movieId, days }: AddToBasketButtonPr
       toast.warning('Max rental is 30 days. Adjusted to 30.');
     }
 
-    dispatch(addItem({ id: movie.id, name: movie.name, price: movie.price, rentDays: rentalDays }));
+    dispatch(addItem({ id: movie.id, name: movie.title, price: movie.price, rentDays: rentalDays }));
 
-    toast.success(`${movie.name} added for ${rentalDays} days.`);
+    toast.success(`${movie.title} added for ${rentalDays} days.`);
   }
 
   return (

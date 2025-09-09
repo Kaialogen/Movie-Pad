@@ -32,7 +32,6 @@ export default function SignupForm() {
         body: JSON.stringify({ username, email, password }),
       });
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
         toast.success('Signup successful! Redirecting...');

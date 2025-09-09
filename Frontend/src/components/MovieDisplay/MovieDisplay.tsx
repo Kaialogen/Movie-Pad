@@ -8,11 +8,11 @@ export default function MovieDisplay() {
   const id = useParams();
   type Movie = {
     id: number;
-    name: string;
+    title: string;
     description: string;
-    image: string;
-    video: string;
-    releaseDate: string;
+    image_url: string;
+    video_url: string;
+    release_date: string;
     genre: string;
     director: string;
     actors: string;
@@ -38,7 +38,7 @@ export default function MovieDisplay() {
       console.error('Invalid movie ID');
       return;
     }
-    fetch(`http://localhost:8000/api/movies/${movieId}`)
+    fetch(`http://localhost:3000/api/movies/${movieId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -68,8 +68,8 @@ export default function MovieDisplay() {
     <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start text-slate-50'>
       {/* Poster Image */}
       <img
-        src={movie.image}
-        alt={`${movie.name} Poster`}
+        src={movie.image_url}
+        alt={`${movie.title} Poster`}
         className='rounded-xl shadow-lg w-full h-auto object-cover max-w-sm mx-auto lg:mx-0'
       />
 
@@ -77,18 +77,18 @@ export default function MovieDisplay() {
       <div className='space-y-6'>
         <iframe
           className='w-full h-64 rounded-xl shadow-lg'
-          src={movie.video}
-          title={`${movie.name} Trailer`}
+          src={movie.video_url}
+          title={`${movie.title} Trailer`}
           allowFullScreen
         ></iframe>
 
-        <h1 className='text-3xl font-bold'>{movie.name}</h1>
+        <h1 className='text-3xl font-bold'>{movie.title}</h1>
         <p className='text-slate-300 leading-relaxed'>{movie.description}</p>
 
         <div className='grid grid-cols-2 gap-6 text-sm text-slate-200'>
           <div>
             <p className='font-semibold text-slate-400'>Release Date</p>
-            <p>{movie.releaseDate}</p>
+            <p>{movie.release_date}</p>
             <p className='font-semibold text-slate-400 mt-4'>Genres</p>
             <p>{movie.genre}</p>
           </div>
