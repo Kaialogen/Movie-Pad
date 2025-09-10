@@ -11,7 +11,7 @@ export function MoviesProvider({ children }) {
     async function fetchMovies() {
       setStatus('loading');
       try {
-        const response = await fetch('http://localhost:8000/api/movies');
+        const response = await fetch('http://localhost:3000/api/movies');
         if (!response.ok) throw new Error('Network error');
         const data = await response.json();
         setMovies(data);

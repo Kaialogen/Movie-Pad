@@ -6,7 +6,7 @@ const pool = new Pool({
   port: 5432,
   user: process.env.POSTGRES_USER || "postgres",
   password: process.env.POSTGRES_PASSWORD || "postgres",
-  database: "moviepad-users",
+  database: "moviepad-db",
 });
 
 module.exports = pool;

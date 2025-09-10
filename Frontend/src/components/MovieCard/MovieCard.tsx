@@ -3,8 +3,8 @@ import MoreInfoButton from '../MoreInfoButton/MoreInfoButton.tsx';
 
 type Movie = {
   id: number;
-  name: string;
-  image: string;
+  title: string;
+  image_url: string;
   price: number;
   description: string;
 };
@@ -19,8 +19,8 @@ export default function MovieCard({ movie, days, onDaysChange }: MovieCardProps)
   return (
     <div key={movie.id} className='group relative w-full max-w-[500px] h-[650px] overflow-hidden rounded-xl shadow-lg'>
       <img
-        src={movie.image}
-        alt={movie.name}
+        src={movie.image_url}
+        alt={movie.title}
         className='w-full h-full object-cover transition-opacity duration-300 ease-in group-hover:opacity-30'
       />
 
@@ -29,8 +29,8 @@ export default function MovieCard({ movie, days, onDaysChange }: MovieCardProps)
         className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in 
                    flex flex-col items-center justify-center px-4 text-center bg-black/70 overflow-y-auto'
       >
-        <h3 className='text-white font-bold text-2xl mb-2'>{movie.name}</h3>
-        <p className='text-white text-sm mb-2'>£{movie.price.toFixed(2)} per day</p>
+        <h3 className='text-white font-bold text-2xl mb-2'>{movie.title}</h3>
+        <p className='text-white text-sm mb-2'>£{movie.price} per day</p>
 
         <label htmlFor={`days-${movie.id}`} className='text-white text-sm mb-1'>
           Days to Rent:

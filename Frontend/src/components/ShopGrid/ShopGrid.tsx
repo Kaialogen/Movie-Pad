@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 
 type Movie = {
   id: number;
-  name: string;
+  title: string;
   image: string;
   price: number;
   description: string;
@@ -23,7 +23,7 @@ export default function ShopGrid() {
     }
   };
   useEffect(() => {
-    fetch('http://localhost:8000/api/movies')
+    fetch('http://localhost:3000/api/movies')
       .then((response) => response.json())
       .then((data) => {
         setMovies(data);

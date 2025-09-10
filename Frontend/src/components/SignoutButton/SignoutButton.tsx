@@ -6,7 +6,7 @@ export default function SignoutButton() {
 
   const signOut = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/logout', {
+      const response = await fetch('http://localhost:3000/api/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });
