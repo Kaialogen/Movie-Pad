@@ -26,9 +26,8 @@ export default function NavLinks() {
         const data = await response.json();
         setUsername(data.username);
         setLoggedIn(true);
-
       } catch (error) {
-        console.error("Error checking login status:", error);
+        console.error('Error checking login status:', error);
         setLoggedIn(false);
       }
     };
