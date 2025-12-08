@@ -1,8 +1,8 @@
-const express = require("express");
-const { submitOrder } = require("../controllers/orderController");
+import express from "express";
+import { submitOrder } from "../controllers/orderController.js";
 
 const router = express.Router();
 
 router.post("/", submitOrder);
 
-module.exports = router;
+export default router;

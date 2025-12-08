@@ -1,4 +1,5 @@
-import { verify } from "jsonwebtoken";
+import pkg from 'jsonwebtoken';
+const { verify } = pkg;
 import { pool } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
