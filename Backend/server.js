@@ -26,7 +26,7 @@ app.use(
       "http://127.0.0.1:5173",
     ],
     credentials: true,
-  })
+  }),
 );
 
 const limiter = rateLimit({
@@ -47,4 +47,3 @@ app.use("/api", movieRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-

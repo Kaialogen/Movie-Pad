@@ -1,4 +1,4 @@
-import pkg from 'jsonwebtoken';
+import pkg from "jsonwebtoken";
 const { sign, verify } = pkg;
 import { hash, compare } from "bcrypt";
 import { pg } from "../db.js";
@@ -57,15 +57,13 @@ export const updatePassword = async (req, res) => {
     const decoded = verify(token, SECRET_KEY);
     const username = decoded.username;
 
-    const rows = await pg`SELECT password FROM Users WHERE username = ${username}`;
+    const rows =
+      await pg`SELECT password FROM Users WHERE username = ${username}`;
     if (rows.length === 0)
       return res.status(404).json({ message: "User not found" });
 
     const storedHashedPassword = rows[0].password;
-    const passwordMatch = await compare(
-      currentPassword,
-      storedHashedPassword
-    );
+    const passwordMatch = await compare(currentPassword, storedHashedPassword);
     if (!passwordMatch)
       return res.status(401).json({ message: "Current password is incorrect" });
 

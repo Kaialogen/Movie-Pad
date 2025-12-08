@@ -1,4 +1,4 @@
-import pkg from 'jsonwebtoken';
+import pkg from "jsonwebtoken";
 const { sign, verify } = pkg;
 import { hash, compare } from "bcrypt";
 import { pg } from "../db.js";
@@ -11,7 +11,8 @@ export const login = async (req, res) => {
     return res.status(400).json({ message: "Missing email or password" });
 
   try {
-    const rows = await pg`SELECT username, email, password FROM Users WHERE email = ${email}`;
+    const rows =
+      await pg`SELECT username, email, password FROM Users WHERE email = ${email}`;
     if (rows.length === 0)
       return res.status(401).json({ message: "Invalid credentials" });
 
@@ -72,7 +73,7 @@ export const profile = (req, res) => {
   }
 };
 
-export const logout = (req, res) => {
+export const logout = (_req, res) => {
   res.clearCookie("authToken", {
     httpOnly: true,
     secure: true,

@@ -1,6 +1,6 @@
 import { pg } from "../db.js";
 
-export const movies = async (req, res) => {
+export const movies = async (_req, res) => {
   try {
     const rows = await pg`SELECT * FROM Movies`;
     res.status(200).json(rows);

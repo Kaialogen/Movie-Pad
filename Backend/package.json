@@ -18,7 +18,12 @@
   "license": "ISC",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun --watch server.js"
+    "dev": "bun --watch server.js",
+    "format": "bunx biome format --write",
+    "lint": "bunx --bun biome lint"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "2.3.8"
+  }
 }
