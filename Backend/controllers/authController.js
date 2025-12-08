@@ -1,10 +1,10 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const pool = require("../db");
+import { sign, verify } from "jsonwebtoken";
+import { hash, compare } from "bcrypt";
+import { pool } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password)
     return res.status(400).json({ message: "Missing email or password" });
@@ -18,11 +18,11 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
 
     const user = rows[0];
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch)
+    const isMatch = await compare(password, user.password);
+    if (!isMatch)
       return res.status(401).json({ message: "Incorrect password" });
 
-    const token = jwt.sign({ username: user.username }, SECRET_KEY, {
+    const token = sign({ username: user.username }, SECRET_KEY, {
       expiresIn: "1h",
     });
 
@@ -40,7 +40,7 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password)
     return res.status(400).json({ message: "Missing required fields" });
@@ -53,7 +53,7 @@ exports.register = async (req, res) => {
     if (rows.length > 0)
       return res.status(409).json({ message: "User already exists" });
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hash(password, 10);
     await pool.query(
       "INSERT INTO Users (username, email, password) VALUES ($1, $2, $3)",
       [username, email, hashedPassword]
@@ -66,12 +66,12 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.profile = (req, res) => {
+export const profile = (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = verify(token, SECRET_KEY);
     res.json({ username: decoded.username });
   } catch (err) {
     console.error("Token error:", err);
@@ -79,7 +79,7 @@ exports.profile = (req, res) => {
   }
 };
 
-exports.logout = (req, res) => {
+export const logout = (req, res) => {
   res.clearCookie("authToken", {
     httpOnly: true,
     secure: true,

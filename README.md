@@ -23,7 +23,7 @@ data is PostgreSQL, which provides a robust and reliable way to store user infor
 ## Tech Stack
 
 - frontend: HTML, React, TailwindCSS, react-router, redux, Shadcn UI, Sonner
-- backend: Node.js, Express
+- backend: Bun, Express
 - user database: PostgreSQL
 - authentication: JWT
 - deployment: Docker, Docker Compose
@@ -31,6 +31,11 @@ data is PostgreSQL, which provides a robust and reliable way to store user infor
 ## Getting Started
 
 - To deploy the docker container: `docker-compose up --build`
+
+### Backend Deployment
+- Navigate to the `backend` directory: `cd backend`
+- Install dependencies: `bun install`
+- Start the server: `bun run sserver.js`
 
 ## Gallery
 

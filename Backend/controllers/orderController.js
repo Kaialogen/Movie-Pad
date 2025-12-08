@@ -1,14 +1,14 @@
-const jwt = require("jsonwebtoken");
-const pool = require("../db");
+import { verify } from "jsonwebtoken";
+import { pool } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
-exports.submitOrder = async (req, res) => {
+export const submitOrder = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = verify(token, SECRET_KEY);
     const username = decoded.username;
 
     const {

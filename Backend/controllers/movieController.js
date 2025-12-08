@@ -1,6 +1,6 @@
-const pool = require("../db");
+import { pool } from "../db.js";
 
-exports.movies = async (req, res) => {
+export const movies = async (req, res) => {
   try {
     const { rows } = await pool.query("SELECT * FROM Movies");
     res.status(200).json(rows);
@@ -10,7 +10,7 @@ exports.movies = async (req, res) => {
   }
 };
 
-exports.movieById = async (req, res) => {
+export const movieById = async (req, res) => {
   const { id } = req.params;
   try {
     const { rows } = await pool.query("SELECT * FROM Movies WHERE id = $1", [

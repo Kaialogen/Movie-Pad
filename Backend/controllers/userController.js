@@ -1,10 +1,10 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const pool = require("../db");
+import { sign, verify } from "jsonwebtoken";
+import { hash, compare } from "bcrypt";
+import { pool } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
-exports.updateUsername = async (req, res) => {
+export const updateUsername = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 
@@ -13,7 +13,7 @@ exports.updateUsername = async (req, res) => {
     return res.status(400).json({ message: "New username is required" });
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = verify(token, SECRET_KEY);
     const currentUsername = decoded.username;
 
     await pool.query("UPDATE Users SET username = $1 WHERE username = $2", [
@@ -27,7 +27,7 @@ exports.updateUsername = async (req, res) => {
       sameSite: "Strict",
     });
 
-    const newToken = jwt.sign({ username: newUsername }, SECRET_KEY, {
+    const newToken = sign({ username: newUsername }, SECRET_KEY, {
       expiresIn: "1h",
     });
 
@@ -45,7 +45,7 @@ exports.updateUsername = async (req, res) => {
   }
 };
 
-exports.updatePassword = async (req, res) => {
+export const updatePassword = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 
@@ -56,7 +56,7 @@ exports.updatePassword = async (req, res) => {
       .json({ message: "Current and new passwords are required" });
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = verify(token, SECRET_KEY);
     const username = decoded.username;
 
     const { rows } = await pool.query(
@@ -67,14 +67,14 @@ exports.updatePassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
 
     const storedHashedPassword = rows[0].password;
-    const passwordMatch = await bcrypt.compare(
+    const passwordMatch = await compare(
       currentPassword,
       storedHashedPassword
     );
     if (!passwordMatch)
       return res.status(401).json({ message: "Current password is incorrect" });
 
-    const newHashedPassword = await bcrypt.hash(newPassword, 10);
+    const newHashedPassword = await hash(newPassword, 10);
     await pool.query("UPDATE Users SET password = $1 WHERE username = $2", [
       newHashedPassword,
       username,
@@ -87,12 +87,12 @@ exports.updatePassword = async (req, res) => {
   }
 };
 
-exports.deleteAccount = async (req, res) => {
+export const deleteAccount = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = verify(token, SECRET_KEY);
     const username = decoded.username;
 
     await pool.query("DELETE FROM Users WHERE username = $1", [username]);
