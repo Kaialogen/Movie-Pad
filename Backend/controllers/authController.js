@@ -29,13 +29,13 @@ export const login = async (req, res) => {
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "Strict",
+      sameSite: "Lax",
       maxAge: 3600000,
     });
 
     res.status(200).json("Login successful!");
-  } catch (err) {
-    console.error("Login error:", err);
+  } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -53,7 +53,7 @@ export const register = async (req, res) => {
     if (rows.length > 0)
       return res.status(409).json({ message: "User already exists" });
 
-    const hashedPassword = await hash(password, 10);
+    const hashedPassword = await hash(password, 12);
     await pool.query(
       "INSERT INTO Users (username, email, password) VALUES ($1, $2, $3)",
       [username, email, hashedPassword]
@@ -67,6 +67,7 @@ export const register = async (req, res) => {
 };
 
 export const profile = (req, res) => {
+  console.log("COOKIES:", req.cookies);
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
 

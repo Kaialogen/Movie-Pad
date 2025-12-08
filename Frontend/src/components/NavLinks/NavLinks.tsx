@@ -11,16 +11,24 @@ export default function NavLinks() {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const response = await fetch('http://localhost:3000/api/auth/profile', {
-        method: 'GET',
-        credentials: 'include',
-      });
+      try {
+        const response = await fetch('http://localhost:3000/api/auth/profile', {
+          method: 'GET',
+          credentials: 'include',
+        });
 
-      if (response.ok) {
+        if (!response.ok) {
+          setLoggedIn(false);
+          console.log(response);
+          return;
+        }
+
         const data = await response.json();
         setUsername(data.username);
         setLoggedIn(true);
-      } else {
+
+      } catch (error) {
+        console.error("Error checking login status:", error);
         setLoggedIn(false);
       }
     };
