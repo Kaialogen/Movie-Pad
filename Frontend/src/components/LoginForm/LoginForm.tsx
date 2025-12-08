@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 export default function LoginForm({ Route }: { Route: string }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [plainTextPassword, setPlainTextPassword] = useState('');
 
   function validateEmail(email: string) {
     return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email);
@@ -23,7 +23,7 @@ export default function LoginForm({ Route }: { Route: string }) {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, plainTextPassword }),
       });
       const data = await response.json();
 
@@ -66,8 +66,8 @@ export default function LoginForm({ Route }: { Route: string }) {
             type='password'
             name='password'
             placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={plainTextPassword}
+            onChange={(e) => setPlainTextPassword(e.target.value)}
             className='w-full px-4 py-2 border border-purple-500 text-slate-900 rounded focus:outline-none focus:ring-2 focus:ring-purple-700'
             required
           />

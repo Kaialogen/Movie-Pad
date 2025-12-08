@@ -6,7 +6,7 @@ export default function SignupForm() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [plainTextPassword, setPlainTextPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   function validateEmail(email: string) {
@@ -19,7 +19,7 @@ export default function SignupForm() {
       toast.error('Please enter a valid email address.');
       return;
     }
-    if (password !== confirmPassword) {
+    if (plainTextPassword !== confirmPassword) {
       toast.error('Passwords do not match.');
       return;
     }
@@ -29,7 +29,7 @@ export default function SignupForm() {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, plainTextPassword }),
       });
       const data = await response.json();
 
@@ -91,8 +91,8 @@ export default function SignupForm() {
               id='password'
               name='password'
               placeholder='Create a Password...'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={plainTextPassword}
+              onChange={(e) => setPlainTextPassword(e.target.value)}
               className='w-full px-4 py-2 border border-purple-500 text-slate-900 rounded focus:outline-none focus:ring-2 focus:ring-purple-700'
               required
             />

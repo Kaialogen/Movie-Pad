@@ -1,13 +1,13 @@
 import pkg from "jsonwebtoken";
 const { sign, verify } = pkg;
-import { hash, compare } from "bcrypt";
+import { password } from "bun";
 import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password)
+  const { email, plainTextPassword } = req.body;
+  if (!email || !plainTextPassword)
     return res.status(400).json({ message: "Missing email or password" });
 
   try {
@@ -17,7 +17,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
 
     const user = rows[0];
-    const isMatch = await compare(password, user.password);
+    const isMatch = await password.verify(plainTextPassword, user.password);
     if (!isMatch)
       return res.status(401).json({ message: "Incorrect password" });
 
@@ -40,8 +40,8 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password)
+  const { username, email, plainTextPassword } = req.body;
+  if (!username || !email || !plainTextPassword)
     return res.status(400).json({ message: "Missing required fields" });
 
   try {
@@ -49,7 +49,10 @@ export const register = async (req, res) => {
     if (rows.length > 0)
       return res.status(409).json({ message: "User already exists" });
 
-    const hashedPassword = await hash(password, 12);
+    const hashedPassword = await password.hash(plainTextPassword, {
+      algorithm: 'bcrypt',
+      cost: 12
+    });
     await pg`INSERT INTO Users (username, email, password) VALUES (${username}, ${email}, ${hashedPassword})`;
 
     res.status(201).json({ message: "User registered successfully" });

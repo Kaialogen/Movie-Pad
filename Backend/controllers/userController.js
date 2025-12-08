@@ -1,6 +1,6 @@
 import pkg from "jsonwebtoken";
 const { sign, verify } = pkg;
-import { hash, compare } from "bcrypt";
+import { password } from "bun";
 import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
@@ -63,11 +63,14 @@ export const updatePassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
 
     const storedHashedPassword = rows[0].password;
-    const passwordMatch = await compare(currentPassword, storedHashedPassword);
+    const passwordMatch = await password.verify(currentPassword, storedHashedPassword);
     if (!passwordMatch)
       return res.status(401).json({ message: "Current password is incorrect" });
 
-    const newHashedPassword = await hash(newPassword, 10);
+    const newHashedPassword = await password.hash(newPassword, {
+      algorithm: "bcrypt",
+      cost: 12,
+    });
     await pg`"UPDATE Users SET password = ${newHashedPassword} WHERE username = ${username}`;
 
     res.status(200).json({ message: "Password updated successfully" });
