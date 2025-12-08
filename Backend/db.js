@@ -9,4 +9,8 @@ const pool = new Pool({
   database: "moviepad-db",
 });
 
+if (pool) {
+  console.log("DB connection success");
+}
+
 module.exports = pool;
