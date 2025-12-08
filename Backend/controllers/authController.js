@@ -1,7 +1,7 @@
 import pkg from 'jsonwebtoken';
 const { sign, verify } = pkg;
 import { hash, compare } from "bcrypt";
-import { pool } from "../db.js";
+import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
@@ -11,10 +11,7 @@ export const login = async (req, res) => {
     return res.status(400).json({ message: "Missing email or password" });
 
   try {
-    const { rows } = await pool.query(
-      "SELECT username, email, password FROM Users WHERE email = $1",
-      [email]
-    );
+    const rows = await pg`SELECT username, email, password FROM Users WHERE email = ${email}`;
     if (rows.length === 0)
       return res.status(401).json({ message: "Invalid credentials" });
 
@@ -47,18 +44,12 @@ export const register = async (req, res) => {
     return res.status(400).json({ message: "Missing required fields" });
 
   try {
-    const { rows } = await pool.query(
-      "SELECT email FROM Users WHERE email = $1",
-      [email]
-    );
+    const rows = await pg`SELECT email FROM Users WHERE email = ${email}`;
     if (rows.length > 0)
       return res.status(409).json({ message: "User already exists" });
 
     const hashedPassword = await hash(password, 12);
-    await pool.query(
-      "INSERT INTO Users (username, email, password) VALUES ($1, $2, $3)",
-      [username, email, hashedPassword]
-    );
+    await pg`INSERT INTO Users (username, email, password) VALUES (${username}, ${email}, ${hashedPassword})`;
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {

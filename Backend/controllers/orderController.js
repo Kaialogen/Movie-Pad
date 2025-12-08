@@ -1,6 +1,6 @@
 import pkg from 'jsonwebtoken';
 const { verify } = pkg;
-import { pool } from "../db.js";
+import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
@@ -46,27 +46,9 @@ export const submitOrder = async (req, res) => {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    await pool.query(
-      `INSERT INTO Orders 
+    await pg`INSERT INTO Orders 
       (username, movie_ids, rent_days, total_price, first_name, last_name, address, city, postal_code, country, card_name, card_number, card_expiry, card_cvc) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
-      [
-        username,
-        MovieId,
-        RentDays,
-        totalPrice,
-        firstName,
-        lastName,
-        address,
-        city,
-        postcode,
-        country,
-        cardName,
-        cardNumber,
-        cardExp,
-        cvv,
-      ]
-    );
+      VALUES (${username}, ${MovieId}, ${RentDays}, ${totalPrice}, ${firstName}, ${lastName}, ${address}, ${city}, ${postcode}, ${country}, ${cardName}, ${cardNumber}, ${cardExp}, ${cvv})`;
 
     res.status(201).json({ message: "Order submitted successfully" });
   } catch (err) {

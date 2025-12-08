@@ -1,7 +1,7 @@
 import pkg from 'jsonwebtoken';
 const { sign, verify } = pkg;
 import { hash, compare } from "bcrypt";
-import { pool } from "../db.js";
+import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
@@ -17,10 +17,7 @@ export const updateUsername = async (req, res) => {
     const decoded = verify(token, SECRET_KEY);
     const currentUsername = decoded.username;
 
-    await pool.query("UPDATE Users SET username = $1 WHERE username = $2", [
-      newUsername,
-      currentUsername,
-    ]);
+    await pg`"UPDATE Users SET username = ${newUsername} WHERE username = ${currentUsername}`;
 
     res.clearCookie("authToken", {
       httpOnly: true,
@@ -60,10 +57,7 @@ export const updatePassword = async (req, res) => {
     const decoded = verify(token, SECRET_KEY);
     const username = decoded.username;
 
-    const { rows } = await pool.query(
-      "SELECT password FROM Users WHERE username = $1",
-      [username]
-    );
+    const rows = await pg`SELECT password FROM Users WHERE username = ${username}`;
     if (rows.length === 0)
       return res.status(404).json({ message: "User not found" });
 
@@ -76,10 +70,7 @@ export const updatePassword = async (req, res) => {
       return res.status(401).json({ message: "Current password is incorrect" });
 
     const newHashedPassword = await hash(newPassword, 10);
-    await pool.query("UPDATE Users SET password = $1 WHERE username = $2", [
-      newHashedPassword,
-      username,
-    ]);
+    await pg`"UPDATE Users SET password = ${newHashedPassword} WHERE username = ${username}`;
 
     res.status(200).json({ message: "Password updated successfully" });
   } catch (err) {
@@ -96,7 +87,7 @@ export const deleteAccount = async (req, res) => {
     const decoded = verify(token, SECRET_KEY);
     const username = decoded.username;
 
-    await pool.query("DELETE FROM Users WHERE username = $1", [username]);
+    await pg`DELETE FROM Users WHERE username = ${username}`;
 
     res.clearCookie("authToken", {
       httpOnly: true,

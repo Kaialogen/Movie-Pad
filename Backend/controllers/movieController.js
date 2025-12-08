@@ -1,8 +1,8 @@
-import { pool } from "../db.js";
+import { pg } from "../db.js";
 
 export const movies = async (req, res) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM Movies");
+    const rows = await pg`SELECT * FROM Movies`;
     res.status(200).json(rows);
   } catch (err) {
     console.error("Error fetching movies:", err);
@@ -13,9 +13,7 @@ export const movies = async (req, res) => {
 export const movieById = async (req, res) => {
   const { id } = req.params;
   try {
-    const { rows } = await pool.query("SELECT * FROM Movies WHERE id = $1", [
-      id,
-    ]);
+    const rows = await pg`SELECT * FROM Movies WHERE id = ${id}`;
     if (rows.length === 0) {
       return res.status(404).json({ message: "Movie not found" });
     }

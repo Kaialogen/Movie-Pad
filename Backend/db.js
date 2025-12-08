@@ -1,14 +1,23 @@
 import 'dotenv/config';
-import { Pool } from 'pg';
+import { SQL } from "bun";
 
-export const pool = new Pool({
+
+export const pg = new SQL({
   host: 'localhost',
   port: 5432,
   user: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: 'moviepad-db',
-});
 
-if (pool) {
-  console.log('DB connection success');
-}
+  max: 20,
+  idleTimeout: 30,
+  maxLifetime: 0,
+  connectionTimeout: 30,
+
+  onconnect: client => {
+    console.log("Connected to PostgreSQL");
+  },
+  onclose: client => {
+    console.log("PostgreSQL connection closed");
+  },
+});
