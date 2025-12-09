@@ -1,12 +1,12 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { setCookie, deleteCookie } from 'hono/cookie';
+import { setCookie, deleteCookie, getCookie } from "hono/cookie";
 import dotenv from "dotenv";
 import { pg } from "./db.js";
 import { password } from "bun";
 import pkg from "jsonwebtoken";
 const { sign, verify } = pkg;
-import { logger } from 'hono/logger'
+import { logger } from "hono/logger";
 
 dotenv.config();
 
@@ -17,7 +17,8 @@ const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 // Middleware
 app.use(logger());
 app.use(
-  cors("/", {
+  "*",
+  cors({
     origin: [
       "http://localhost:5173",
       "http://localhost:8080",
@@ -81,7 +82,7 @@ app.post("api/auth/login", async (c) => {
       secure: false,
       sameSite: "Lax",
       maxAge: 3600, // seconds
-    })
+    });
 
     return c.json({ message: "Login successful!" }, 200);
   } catch (error) {
@@ -117,8 +118,7 @@ app.post("/api/auth/register", async (c) => {
 
 // get api/auth/profile
 app.get("/api/auth/profile", (c) => {
-  const token = c.req.valid("authToken");
-  console.log(token);
+  const token = getCookie(c, "authToken");
   if (!token) return c.json({ message: "Not authenticated" }, 401);
 
   try {
