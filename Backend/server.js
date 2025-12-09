@@ -6,6 +6,7 @@ import { pg } from "./db.js";
 import { password } from "bun";
 import pkg from "jsonwebtoken";
 const { sign, verify } = pkg;
+import { logger } from 'hono/logger'
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
 // Middleware
+app.use(logger());
 app.use(
   cors("/", {
     origin: [
