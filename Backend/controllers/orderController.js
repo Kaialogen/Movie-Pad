@@ -4,6 +4,7 @@ import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
+// /api/orders/
 export const submitOrder = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });

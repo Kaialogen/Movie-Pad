@@ -5,6 +5,7 @@ import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
+// /api/user/update-username
 export const updateUsername = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
@@ -43,6 +44,7 @@ export const updateUsername = async (req, res) => {
   }
 };
 
+// /api/user/update-password
 export const updatePassword = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });
@@ -80,6 +82,7 @@ export const updatePassword = async (req, res) => {
   }
 };
 
+// /api/user/delete-account
 export const deleteAccount = async (req, res) => {
   const token = req.cookies.authToken;
   if (!token) return res.status(401).json({ message: "Not authenticated" });

@@ -5,6 +5,7 @@ import { pg } from "../db.js";
 
 const SECRET_KEY = process.env.JWT_SECRET || "your-secret-key";
 
+// api/auth/login
 export const login = async (req, res) => {
   const { email, plainTextPassword } = req.body;
   if (!email || !plainTextPassword)
@@ -39,6 +40,7 @@ export const login = async (req, res) => {
   }
 };
 
+// api/auth/register
 export const register = async (req, res) => {
   const { username, email, plainTextPassword } = req.body;
   if (!username || !email || !plainTextPassword)
@@ -62,6 +64,7 @@ export const register = async (req, res) => {
   }
 };
 
+// api/auth/profile
 export const profile = (req, res) => {
   console.log("COOKIES:", req.cookies);
   const token = req.cookies.authToken;
@@ -76,6 +79,7 @@ export const profile = (req, res) => {
   }
 };
 
+// api/auth/logout
 export const logout = (_req, res) => {
   res.clearCookie("authToken", {
     httpOnly: true,

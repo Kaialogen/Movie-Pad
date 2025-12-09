@@ -1,5 +1,6 @@
 import { pg } from "../db.js";
 
+// /api/movies
 export const movies = async (_req, res) => {
   try {
     const rows = await pg`SELECT * FROM Movies`;
@@ -10,6 +11,7 @@ export const movies = async (_req, res) => {
   }
 };
 
+// /api/movies/:id
 export const movieById = async (req, res) => {
   const { id } = req.params;
   try {
