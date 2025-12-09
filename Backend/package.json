@@ -2,20 +2,17 @@
   "name": "users-backend",
   "version": "1.0.0",
   "author": "",
-  "exports": "./index.js",
+  "exports": "./server.ts",
   "dependencies": {
     "bun": "^1.3.4",
-    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "express-rate-limit": "^8.2.1",
     "hono": "^4.10.8",
     "hono-rate-limiter": "^0.4.2",
     "jsonwebtoken": "^9.0.3"
   },
   "description": "",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun --watch server.js",

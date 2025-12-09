@@ -136,6 +136,162 @@ app.post("/api/auth/logout", (c) => {
   return c.json({ message: "Logged out" });
 });
 
+// put /api/user/update-username
+app.put("/api/user/update-username", async (c) => {
+  const token = getCookie(c, "authToken");
+  if (!token) return c.json({ message: "Not authenticated" }, 401);
+
+  const { newUsername } = await c.req.json();
+  if (!newUsername) return c.json({ message: "New username is required" }, 400);
+
+  try {
+    const decoded = verify(token, SECRET_KEY);
+    const currentUsername = decoded.username;
+
+    await pg`UPDATE Users SET username = ${newUsername} WHERE username = ${currentUsername}`;
+
+    const deletedCookie = deleteCookie(c, "authToken");
+
+    if (deletedCookie === undefined) {
+      console.log("Cookie cannot be deleted");
+      return c.json({ message: "Server error" }, 500);
+    }
+
+    const newToken = sign({ username: newUsername }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    setCookie(c, "authToken", newToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "Lax",
+      maxAge: 3600, // seconds
+    });
+
+    return c.json({ message: "Username updated successfully" }, 200);
+  } catch (err) {
+    console.error("Update username error:", err);
+    return c.json({ message: "Server error" }, 500);
+  }
+});
+
+// put /api/user/update-password
+app.put("/api/user/update-password", async (c) => {
+  const token = getCookie(c, "authToken");
+  if (!token) c.json({ message: "Not authenticated" }, 401);
+
+  const { currentPassword, newPassword } = await c.req.json();
+  if (!currentPassword || !newPassword)
+    return c.json({ message: "Current and new passwords are required" }, 400);
+
+  try {
+    const decoded = verify(token, SECRET_KEY);
+    const username = decoded.username;
+
+    const rows =
+      await pg`SELECT password FROM Users WHERE username = ${username}`;
+    if (rows.length === 0) return c.json({ message: "User not found" }, 404);
+
+    const storedHashedPassword = rows[0].password;
+    const passwordMatch = await password.verify(
+      currentPassword,
+      storedHashedPassword,
+    );
+    if (!passwordMatch)
+      return c.json({ message: "Current password is incorrect" }, 401);
+
+    const newHashedPassword = await password.hash(newPassword, {
+      algorithm: "bcrypt",
+      cost: 12,
+    });
+    await pg`UPDATE Users SET password = ${newHashedPassword} WHERE username = ${username}`;
+
+    return c.json({ message: "Password updated successfully" }, 200);
+  } catch (err) {
+    console.error("Update password error:", err);
+    return c.json({ message: "Server error" }, 500);
+  }
+});
+
+// delete /api/user/delete-account
+app.delete("/api/user/delete-account", async (c) => {
+  const token = getCookie(c, "authToken");
+  if (!token) return c.json({ message: "Not authenticated" }, 401);
+
+  try {
+    const decoded = verify(token, SECRET_KEY);
+    const username = decoded.username;
+
+    await pg`DELETE FROM Users WHERE username = ${username}`;
+
+    const deletedCookie = deleteCookie(c, "authToken");
+
+    if (deletedCookie === undefined) {
+      console.log("Cookie cannot be deleted");
+      return c.json({ message: "Server error" }, 500);
+    }
+
+    return c.json({ message: "Account deleted successfully" }, 200);
+  } catch (err) {
+    console.error("Delete account error:", err);
+    return c.json({ message: "Server error" }, 500);
+  }
+});
+
+// post /api/orders/
+app.post("/api/orders/", async (c) => {
+  const token = getCookie(c, "authToken");
+  if (!token) return c.json({ message: "Not authenticated" }, 401);
+
+  try {
+    const decoded = verify(token, SECRET_KEY);
+    const username = decoded.username;
+
+    const {
+      MovieId,
+      RentDays,
+      totalPrice,
+      firstName,
+      lastName,
+      address,
+      city,
+      country,
+      postcode,
+      cardName,
+      cardNumber,
+      cardExp,
+      cvv,
+    } = await c.req.json();
+
+    if (
+      !MovieId ||
+      !RentDays ||
+      !totalPrice ||
+      !firstName ||
+      !lastName ||
+      !address ||
+      !city ||
+      !postcode ||
+      !country ||
+      !cardName ||
+      !cardNumber ||
+      !cardExp ||
+      !cvv
+    ) {
+      return c.json({ message: "Missing required fields" }, 400);
+    }
+
+    await pg`INSERT INTO Orders 
+      (username, movie_ids, rent_days, total_price, first_name, last_name, address, city, postal_code, country, card_name, card_number, card_expiry, card_cvc) 
+      VALUES (${username}, ${MovieId}, ${RentDays}, ${totalPrice}, ${firstName}, ${lastName}, ${address}, ${city}, ${postcode}, ${country}, ${cardName}, ${cardNumber}, ${cardExp}, ${cvv})`;
+
+    return c.json({ message: "Order submitted successfully" }, 201);
+  } catch (err) {
+    console.error("Order submission error:", err);
+    return c.json({ message: "Server error" }, 500);
+  }
+});
+
 // Start server
 Bun.serve({
   port: PORT,
