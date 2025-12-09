@@ -1,25 +1,17 @@
-import express from "express";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import rateLimit from "express-rate-limit";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { rateLimiter } from "hono-rate-limiter";
 import dotenv from "dotenv";
+import { pg } from "./db.js";
 
 dotenv.config();
 
-// Routes
-import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
-import movieRoutes from "./routes/movieRoutes.js";
-
-const app = express();
+const app = new Hono();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.json());
-app.use(cookieParser());
 app.use(
-  cors({
+  cors("/", {
     origin: [
       "http://localhost:5173",
       "http://localhost:8080",
@@ -29,21 +21,50 @@ app.use(
   }),
 );
 
-const limiter = rateLimit({
+/*
+app.use(rateLimiter({
   windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: "Too many requests, please try again later.",
-});
-
-app.use(limiter);
+  limit: 100,
+})
+);
+*/
 
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api", movieRoutes);
+// get /api/movies
+app.get("/api/movies", async (c) => {
+  try {
+    const rows = await pg`SELECT * FROM Movies`;
+    c.status(200);
+    return c.json(rows);
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    c.status(500);
+    return c.json({ message: "Server error" });
+  }
+});
+
+// get /api/movies/:id
+app.get("/api/movies/:id", async (c) => {
+  const id = c.req.param("id");
+  try {
+    const rows = await pg`SELECT * FROM Movies WHERE id = ${id}`;
+    if (rows.length === 0) {
+      c.status(404);
+      return c.json({ message: "Movie not found" });
+    }
+    c.status(200);
+    return c.json(rows[0]);
+  } catch (err) {
+    console.error("Error fetching movie by ID:", err);
+    c.status(500);
+    return c.json({ message: "Server error" });
+  }
+});
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+Bun.serve({
+  fetch: app.fetch,
+  port: PORT,
 });
+
+console.log(`Server running on http://localhost:${PORT}`);

@@ -52,8 +52,8 @@ export const register = async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
 
     const hashedPassword = await password.hash(plainTextPassword, {
-      algorithm: 'bcrypt',
-      cost: 12
+      algorithm: "bcrypt",
+      cost: 12,
     });
     await pg`INSERT INTO Users (username, email, password) VALUES (${username}, ${email}, ${hashedPassword})`;
 

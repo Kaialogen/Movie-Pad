@@ -65,7 +65,10 @@ export const updatePassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
 
     const storedHashedPassword = rows[0].password;
-    const passwordMatch = await password.verify(currentPassword, storedHashedPassword);
+    const passwordMatch = await password.verify(
+      currentPassword,
+      storedHashedPassword,
+    );
     if (!passwordMatch)
       return res.status(401).json({ message: "Current password is incorrect" });
 
